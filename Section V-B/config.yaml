@@ -1,0 +1,190 @@
+# 配置文件示例：展示不同PEFT方法的配置
+
+# 默认配置（部分模块微调）
+seed: 1
+device: cuda:0
+
+model_path:
+  GPT2: D:\Model\GPT2
+  GPT2large: D:\Model\GPT2-large
+  llama3: D:\Model\Llama3-8B-Instruct
+  Qwen2.5: D:\Model\Qwen2.5-3B-Instruct
+  GPToss: D:\Model\GPToss
+
+data_path:
+  CoLA: E:/Dataset/cola_public_1.1/cola_public/raw/in_domain_train.tsv
+  SST: E:\Dataset\SST\train.csv
+  Yelp: E:\Dataset\YELP\yelp_academic_dataset_tip\yelp_academic_dataset_tip.json
+  
+model:
+  name_or_path: GPT2
+
+data:
+  # path 支持单数据集（字符串）或多数据集（列表）。
+  # 多数据集时会逐个展开，与 batch_size 做笛卡尔积；每个数据集独立加载模型并运行。
+  path: [CoLA, SST, Yelp]
+  batch_size: [1, 2, 4, 8, 16]
+  max_length: 128
+  shuffle: false
+
+federated:
+  rounds: 1
+  num_clients: 10  # 支持单个整数或列表（如 [5, 10, 20]）以扫描不同客户端数量
+  local_batches: 1
+  client_lr: 0.00001
+  server_lr: 0.00001
+
+# ==================== PEFT配置 ====================
+# 通过 selected_peft 选择PEFT方法，可选值: partial, lora, adapter, mlp
+selected_peft: partial
+
+peft:
+  partial:
+    layer_start: 0
+    layer_end: -1  # -1表示自动使用全部Transformer层
+
+  # 1.1 MLP前馈层微调：对应开源代码 Section 5.3 的 *_Mlp_CoLA 实验
+  mlp:
+    layer_start: 0
+    layer_end: -1
+
+  # 2. LoRA微调 (Low-Rank Adaptation)
+  lora:
+    reduction_factor: 2  # adapter_size = embedding_dim / reduction_factor
+    layer_start: 0
+    layer_end: -1
+
+  # 3. Adapter微调 (Adapter Fine-tuning)
+  adapter:
+    reduction_factor: 2  # adapter_size = embedding_dim / reduction_factor
+    layer_start: 0
+    layer_end: -1
+
+# ==================== 显存管理配置 ====================
+memory:
+  enable_dynamic_batch: true
+  target_memory_usage: 0.9
+  safety_margin: 0.05
+  min_free_memory_gb: 2.0
+  memory_estimate_multiplier: 8.0
+  verbose_memory: false
+
+# ==================== 运行配置 ====================
+run:
+  methods: [cagia-opt, cagia-naive, dager, dlg, tag, lamp, partial-gradient, grab]  # cagia-opt, cagia-naive, dager, dlg, tag, lamp, partial-gradient, grab
+  attack_client: 0
+  reconstruction_batches: 5  # 重建batch次数；2表示基于同一模型连续重建2个batch
+  transformer_layer_index: null  # null表示使用全部梯度；如设为2，则仅使用index=2的Transformer层梯度
+
+# ==================== 各方法参数 ====================
+methods:
+  cagia-opt:
+    gradient_projection: full
+    max_length: 100
+    tolerance: 100
+    error_ratio_threshold: 5
+    top_k: 200
+    first_batch_size: 8192
+    combination_batch_size: 4096
+    max_scan_batch_size: 262144
+    min_scan_batch_size: 256
+    prefix_group_size: 8
+    chunk_size: 4096
+    reduce_full_rank_neurons: 1  # partial PEFT 下检测到满秩方阵梯度时移除的神经元梯度列数（1-2）
+    embedding_epsilon: 1.0e-15  # embedding 过滤阈值，剔除零嵌入 token（与原版一致）
+
+  cagia-naive:
+    gradient_projection: full
+    max_length: 100
+    tolerance: 0.001
+    top_k: 200
+    first_batch_size: 8192
+    combination_batch_size: 4096
+    max_scan_batch_size: 262144
+    min_scan_batch_size: 256
+    prefix_group_size: 8
+    chunk_size: 4096
+    reduce_full_rank_neurons: 1  # partial PEFT 下检测到满秩方阵梯度时移除的神经元梯度列数（1-2）
+    embedding_epsilon: 1.0e-15  # embedding 过滤阈值，剔除零嵌入 token（与原版一致）
+
+  dager:
+    gradient_projection: full
+    max_length: 100
+    guess_max_length: 100
+    vocab_batch_size: 128
+    combination_batch_size: 1024
+    tolerance: 0.001
+    reduce_full_rank_neurons: 1  # partial PEFT 下检测到满秩方阵梯度时移除的神经元梯度列数（1-2）
+    embedding_epsilon: 1.0e-15  # embedding 过滤阈值，剔除零嵌入 token（与原版一致）
+
+  grab:
+    iterations: 2000
+    restarts: 5
+    lr: 0.01
+    alpha: 0.01
+    beta: 0.0
+    beam: 4
+    discrete_iterations: 5
+    num_permutations: 2000
+    init_size: 2000
+    similarity_regularization: 0.0
+
+  dlg:
+    iterations: 4000
+    restarts: 3
+    lr: 0.05
+    gradient_norm: l2
+
+  tag:
+    iterations: 4000
+    restarts: 3
+    lr: 0.05
+    alpha: 0.01
+    gradient_norm: l2
+
+  lamp:
+    iterations: 4000
+    restarts: 3
+    lr: 0.05
+    beta: 0.01
+    discrete_iterations: 5
+    discrete_candidates: 24
+    lm_weight: 0.0
+    # lm_name_or_path: gpt2
+
+  partial-gradient:
+    iterations: 40
+    restarts: 3
+    lr: 0.05
+    gradient_keyword: attn.c_attn
+    # layer_indices: [0]
+
+output:
+  path: results/results.json
+  summary_path: results/summary.json
+
+# ==================== 配置说明 ====================
+# 
+# PEFT方法选择:
+#   - partial: 部分模块微调，直接微调模型中的特定层
+#   - mlp: MLP前馈层微调，对应 Section 5.3 的 *_Mlp_CoLA 实验
+#   - lora: LoRA微调，在指定层插入低秩适配器
+#   - adapter: Adapter微调，在每个Transformer层后插入适配器
+#
+# 参数说明:
+#   - reduction_factor: 降维因子，决定适配器大小
+#   - layer_start/layer_end: 应用PEFT的层范围
+#   - target_module / train_keywords: 由 Utils/model_peft.yaml 根据模型自动决定，
+#     不同模型结构使用各自模块路径（如 GPT2 用 attn.c_attn，Llama3/Qwen2.5 用 self_attn.q_proj）
+#
+# 使用示例:
+#   1. 修改 selected_peft 切换PEFT方法
+#   2. 修改 data.batch_size 为整数运行单个batch size，或改为 [1, 2, 4, 8] 轮流测试多个batch size
+#   3. 修改 federated.num_clients 为整数或列表（如 [5, 10, 20]）以扫描不同客户端数量
+#   4. 修改 data.path 为单个数据集名（如 CoLA）或列表（如 [CoLA, SST, Yelp]）以运行多个数据集
+#   5. 修改 run.reconstruction_batches 控制连续重建多少个batch；攻击过程中不会更新模型
+#   6. 修改 run.transformer_layer_index 控制是否只使用某一层梯度；null使用全部层，2表示只使用第2层
+#   7. 运行单个配置: python New/main.py --config New/config.yaml
+#   8. 逐配置运行多个配置: python New/main.py --config cfg1.yaml cfg2.yaml cfg3.yaml
+#   9. 断点续跑: 若 output.path 中已有相同 model/data/PEFT/batch_size/num_clients/method/round/client/batch/layer 的结果，会自动跳过
+#      结果记录中含 data_name 字段标识数据集；重跑时会将旧结果中缺失的 data_name 自动回填
