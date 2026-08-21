@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 from typing import Dict
 
@@ -6,7 +6,6 @@ from .gradient_matching import gradient_matching_attack
 
 
 def _resolve_gradient_keyword(uploaded_gradients: Dict, peft_config: Dict, requested_keyword):
-    """Use a gradient keyword that actually exists in the uploaded partial gradients."""
     candidates = []
     if requested_keyword:
         candidates.append(str(requested_keyword))
@@ -25,7 +24,6 @@ def _resolve_gradient_keyword(uploaded_gradients: Dict, peft_config: Dict, reque
     if method in defaults:
         candidates.append(defaults[method])
 
-    # Keep order while removing duplicates.
     seen = set()
     ordered_candidates = []
     for keyword in candidates:
@@ -47,7 +45,7 @@ def run_attack(global_model, uploaded_gradients, peft_config, tokenizer, **kwarg
         peft_config,
         kwargs.get("gradient_keyword"),
     )
-    
+
     result = gradient_matching_attack(global_model, uploaded_gradients, peft_config, tokenizer, kwargs, "Partial-Gradient")
     result["partial_gradient_keyword"] = kwargs.get("gradient_keyword")
     result["layer_indices"] = kwargs.get("layer_indices")

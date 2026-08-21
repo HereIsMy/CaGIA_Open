@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import hashlib
 import json
@@ -16,12 +16,6 @@ def _json_default(value: Any) -> str:
 
 
 def make_record_meta(cfg: Dict[str, Any]) -> Dict[str, Any]:
-    """从 cfg 提取需要写入结果记录的元信息（model_name/peft_method/batch_size/data_name）。
-
-    用于：
-      1. 写入新记录时作为字段；
-      2. has_completed 匹配旧记录时回填缺失字段。
-    """
     data_cfg = cfg.get("data", {})
     return {
         "model_name": _model_display_name(cfg.get("model", {}).get("name_or_path", "")),
@@ -66,7 +60,6 @@ class JsonResultWriter:
         return record.get("reference_text", []) == raw_batch["sentence"]
 
     def _backfill(self, record: Dict[str, Any], meta: Dict[str, Any]) -> None:
-        """将 meta 中缺失的字段回填到旧记录并落盘。"""
         changed = False
         for key, value in meta.items():
             if value and not record.get(key):
@@ -78,7 +71,6 @@ class JsonResultWriter:
     def has_completed(self, experiment_key: str, method_name: str, round_idx: int, client_idx: int, batch_idx: int, raw_batch=None, meta: Dict[str, Any] | None = None) -> bool:
         for record in self.records:
             if record.get("experiment_key") == experiment_key:
-                # 兼容旧结果：回填 data_name/model_name/peft_method/batch_size
                 if meta:
                     self._backfill(record, meta)
                 return True
@@ -93,7 +85,6 @@ class JsonResultWriter:
             if "batch_idx" in record and int(record.get("batch_idx", -1)) != int(batch_idx):
                 continue
             if self._same_reference_text(record, raw_batch):
-                # 兼容旧结果：回填 data_name/model_name/peft_method/batch_size
                 if meta:
                     self._backfill(record, meta)
                 return True

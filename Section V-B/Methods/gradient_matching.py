@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 from typing import Dict, Iterable, List, Sequence, Tuple
 
@@ -30,12 +30,10 @@ def _selected_named_parameters(model: torch.nn.Module, uploaded_gradients: Dict[
     names = [name for name, _p in trainable_named_parameters(model)]
     keyword = cfg.get("gradient_keyword") or cfg.get("target_keyword")
     selected_names = [name for name in names if name in uploaded_gradients]
-    
-    # 检查交集
+
     common_names = set(names) & set(uploaded_gradients.keys())
-    
+
     if keyword:
-        # 检查哪些参数名包含关键词
         matching_names = [name for name in selected_names if str(keyword) in name]
         selected_names = matching_names
     layer_indices = cfg.get("layer_indices")

@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import argparse
 import json
@@ -35,7 +35,6 @@ def _simple_yaml_value(value: str) -> Any:
 
 
 def _fallback_yaml_load(text: str) -> Dict[str, Any]:
-    """Small YAML subset loader used when PyYAML is unavailable."""
     root: Dict[str, Any] = {}
     stack = [(-1, root)]
     for raw_line in text.splitlines():
@@ -105,7 +104,6 @@ def _resolve_named_references(cfg: Dict[str, Any]) -> Dict[str, Any]:
         for key, value in defaults.items():
             data_cfg.setdefault(key, value)
 
-    # num_labels 由数据集强制决定，覆盖任何已存在的值，并同步到 model 配置
     resolved_name = str(data_cfg.get("name") or "").lower()
     dataset_defaults = DATASET_DEFAULTS.get(resolved_name, {})
     if "num_labels" in dataset_defaults:

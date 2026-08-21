@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 from dataclasses import dataclass
 from typing import Dict, List, Sequence
@@ -13,12 +13,6 @@ from Utils.peft_config import get_peft_method_config
 
 
 def _is_linear_module(model: torch.nn.Module, module_path: str) -> bool:
-    """检查目标模块是否为 nn.Linear（需要梯度转置）。
-
-    nn.Linear 的权重形状为 (out, in)，梯度也是 (out, in)，需要转置为 (in, out)
-    才能使每列与输入向量成正比，从而匹配激活。
-    Conv1D (GPT2) 的权重形状为 (in, out)，梯度也是 (in, out)，无需转置。
-    """
     try:
         for block in iter_transformer_blocks(model):
             module = get_module_by_path(block, module_path)
@@ -38,14 +32,8 @@ class AttackContext:
 
 
 def _slice_gradient_matrix(grad: torch.Tensor, projection: str | None) -> torch.Tensor:
-    """对 QKV 合并投影的梯度进行切片（q/k/v）。
-
-    仅当输出维度（dim=1）恰好是输入维度（dim=0）的 3 倍时才切片，
-    以避免对 nn.Linear 的 o_proj 等非 QKV 模块误切。
-    """
     if grad.ndim != 2 or not projection:
         return grad
-    # 只有当 out == 3 * in 时才认为是 QKV 合并投影
     if grad.shape[0] <= 0 or grad.shape[1] != 3 * grad.shape[0]:
         return grad
     hidden = grad.shape[0]
@@ -59,11 +47,6 @@ def _slice_gradient_matrix(grad: torch.Tensor, projection: str | None) -> torch.
 
 
 def _prepare_gradient(grad: torch.Tensor, projection: str | None, transpose: bool) -> torch.Tensor:
-    """转置（nn.Linear）并切片（QKV 投影）梯度矩阵。
-
-    对于 nn.Linear，权重梯度形状为 (out, in)，需要转置为 (in, out)
-    使每列与输入向量成正比，从而匹配激活。
-    """
     if grad.ndim != 2:
         return grad
     g = grad.detach()
@@ -91,11 +74,6 @@ def gradient_matrices_by_keywords(uploaded_gradients: TensorDict, keywords: Sequ
 
 
 def _reduce_full_rank_matrices(matrices: List[torch.Tensor], peft_method: str, cfg: Dict) -> List[torch.Tensor]:
-    """当 PEFT 方法为 partial 时，检测满秩方阵梯度并移除 1-2 个神经元梯度列以保持低秩。
-
-    梯度满秩时列空间为整个 R^n，线性重建攻击无法缩小候选范围。
-    移除少量列（输出神经元梯度）使列空间变为真子空间，恢复攻击的区分能力。
-    """
     if peft_method.lower() != "partial":
         return matrices
     max_removal = int(cfg.get("reduce_full_rank_neurons", 1))
@@ -108,7 +86,7 @@ def _reduce_full_rank_matrices(matrices: List[torch.Tensor], peft_method: str, c
         total_removed += removed
         reduced_matrices.append(reduced)
     if total_removed > 0:
-        print(f"[Rank Reduction] 检测到满秩梯度，共移除 {total_removed} 个神经元梯度列以保持低秩")
+        pass
     return reduced_matrices
 
 
@@ -122,7 +100,6 @@ def default_linear_gradient_keyword(peft_method: str, gradient_keyword: str | No
 
 
 def resolve_linear_gradient_keyword(peft_method: str, gradient_keyword: str | None) -> str | None:
-    """Use the weight matrix whose input dimension matches captured activations."""
     method = peft_method.lower()
     if method == "adapter" and gradient_keyword in {None, "adapter"}:
         return "adapter_down.weight"
@@ -180,7 +157,7 @@ def _estimate_sequence_batch_size(
     estimated = int((usable_gb * (1024 ** 3)) / bytes_per_sample) if bytes_per_sample else preferred_batch_size
     batch_size = max(min_batch_size, min(max_batch_size, estimated if estimated > 0 else preferred_batch_size))
     if verbose:
-        print(f"动态扫描batch size(seq_len={seq_len}, hidden={hidden_dim}, layers={layer_count}): {batch_size}")
+        pass
     return batch_size
 
 
@@ -243,8 +220,6 @@ def decode_token_sequences(tokenizer, sequences: Sequence[Sequence[int]]) -> Lis
 
 
 def _has_consecutive_duplicate_tail(seq: Sequence[int]) -> bool:
-    """判断序列末尾是否存在连续相同的 token（如 [..., 234, 234]）。
-    用于在扩展过程中阻断连续相同 token 的序列继续生长。"""
     return len(seq) >= 2 and seq[-1] == seq[-2]
 
 
@@ -258,14 +233,12 @@ def _collect_candidates(model, token_batches, store, module_path: str, device: t
     def forward_batch(ids: torch.Tensor):
         try:
             store.clear()
-            # 设置 hook 仅保存目标位置的激活，避免完整序列占用显存
             store.token_index = token_index
             attention_mask = torch.ones_like(ids, device=device)
             with torch.no_grad():
                 model(input_ids=ids.to(device), attention_mask=attention_mask)
             if not store.values:
                 return
-            # store.values 已是各层目标位置的激活 (batch, hidden_dim)，直接堆叠
             selected = list(store.values)
             activations = torch.stack(selected, dim=0)
             if activations.ndim == 3:
@@ -294,26 +267,24 @@ def linear_reconstruct(
     position_candidates: List[List[int]] | None = None,
 ) -> Dict:
     peft_method = ctx.peft_config.get("method", "partial")
-    
-    # 优先从cfg中获取，如果没有则根据PEFT方法获取默认值
+
     hook_module = cfg.get("hook_module")
     gradient_keyword = cfg.get("gradient_keyword")
-    
+
     if hook_module is None or gradient_keyword is None:
         try:
             peft_method_config = get_peft_method_config(peft_method)
             default_config = peft_method_config["default_config"]
-            
+
             if hook_module is None:
                 hook_module = default_config.get("target_module", "attn.c_attn")
-            
+
             if gradient_keyword is None:
                 gradient_keyword = resolve_linear_gradient_keyword(peft_method, None)
                 if gradient_keyword is None:
                     train_keywords = default_config.get("train_keywords", [])
                     gradient_keyword = train_keywords[0] if train_keywords else "attn.c_attn"
         except Exception:
-            # 如果获取失败，使用默认值
             if hook_module is None:
                 hook_module = "attn.c_attn"
             if gradient_keyword is None:
@@ -321,7 +292,6 @@ def linear_reconstruct(
     gradient_keywords = linear_gradient_keywords(peft_method, gradient_keyword, hook_module)
 
     projection = cfg.get("gradient_projection")
-    # nn.Linear 的权重梯度 (out, in) 需要转置为 (in, out) 才能正确匹配输入激活
     transpose_gradient = _is_linear_module(ctx.global_model, hook_module)
     matrices = gradient_matrices_by_keywords(ctx.uploaded_gradients, gradient_keywords, projection, transpose=transpose_gradient)
     layer_indices = cfg.get("layer_indices")
@@ -331,7 +301,6 @@ def linear_reconstruct(
     if not matrices:
         return {"reconstructed_text": [], "token_ids": [], "status": "no_gradient_matrix"}
 
-    # 当 PEFT 方法为 partial 时，检测满秩方阵梯度并移除 1-2 个神经元梯度列以保持低秩
     matrices = _reduce_full_rank_matrices(matrices, peft_method, cfg)
 
     max_len = int(cfg.get("max_length", 16))
@@ -345,22 +314,18 @@ def linear_reconstruct(
     threshold = float(cfg.get("error_ratio_threshold", 5.0))
     eos_id = int(cfg.get("eos_token_id", getattr(ctx.tokenizer, "eos_token_id", 0) or 0))
     device = ctx.device
-    
-    # 显存管理配置
+
     enable_dynamic_batch = cfg.get("enable_dynamic_batch", True)
     target_memory_usage = cfg.get("target_memory_usage", 0.85)
     safety_margin = cfg.get("safety_margin", 0.1)
     min_free_memory_gb = float(cfg.get("min_free_memory_gb", 2.0))
     memory_estimate_multiplier = float(cfg.get("memory_estimate_multiplier", 12.0))
     verbose_memory = cfg.get("verbose_memory", False)
-    
-    # 清理显存
+
     clear_gpu_cache(verbose_memory)
-    
-    # 获取初始显存信息
+
     if verbose_memory:
         total_memory, used_memory, free_memory = get_gpu_memory_info()
-        print(f"初始显存状态: {used_memory:.2f}GB / {total_memory:.2f}GB ({used_memory/total_memory*100:.1f}%)")
 
     store, handles = register_attention_input_hooks(ctx.global_model, hook_module)
     try:
@@ -380,7 +345,6 @@ def linear_reconstruct(
         layer_hint = max(1, len(matrices))
         first = generate_combinations(token_pool, [[eos_id]], device)
         layer_hits: List[List] = [[] for _ in matrices]
-        # CaGIA-Naive 诊断：收集所有候选 token 的最小残差（跨层取最小），用于打印 top-100
         all_token_residuals: Dict[int, float] = {} if not optimized else None
 
         first_batches = _dynamic_scan_batches(
@@ -406,11 +370,8 @@ def linear_reconstruct(
                 hits = match_candidates(layer_idx, aligned_matrix, acts[layer_idx])
                 for row, _col, error in hits:
                     layer_hits[layer_idx].append((int(ids[row, 0].item()), error))
-                # CaGIA-Opt 增量截断：每个 batch 后仅保留 top-k，避免 layer_hits 膨胀。
-                # 数学等价：top_k(A ∪ B) = top_k(top_k(A) ∪ B)，最终结果与一次性 top-k 一致。
                 if optimized:
                     layer_hits[layer_idx] = top_k_by_error(layer_hits[layer_idx], top_k)
-                # CaGIA-Naive 诊断：收集所有候选的残差（不受 tol 过滤）
                 if all_token_residuals is not None:
                     residuals = compute_all_residuals_preprocessed(get_preprocessed(layer_idx, aligned_matrix), acts[layer_idx], chunk_size)
                     if residuals is not None:
@@ -420,18 +381,12 @@ def linear_reconstruct(
                             prev = all_token_residuals.get(token_id)
                             if prev is None or err < prev:
                                 all_token_residuals[token_id] = err
-        # CaGIA-Naive 诊断：打印残差最小的 100 个 token
         if all_token_residuals is not None and all_token_residuals:
             sorted_residuals = sorted(all_token_residuals.items(), key=lambda x: x[1])
             top_n = sorted_residuals[:100]
-            # print("[CaGIA-Naive] 残差最小的 100 个 token:")
-            # for rank_idx, (token_id, residual) in enumerate(top_n, 1):
-            #     print(f"  #{rank_idx}: token_id={token_id}, residual={residual:.6e}")
         if optimized:
             first_tokens = select_by_error_ratio([top_k_by_error(h, top_k) for h in layer_hits], threshold)
         else:
-            # CaGIA-Naive in the original code keeps every vector whose
-            # reconstruction error is below tol; it does not apply top-k ratio.
             first_tokens = [token for hits in layer_hits for token, _error in hits]
         possible = [[int(t)] for t in dict.fromkeys(first_tokens)]
         delayed: List[List[int]] = []
@@ -473,8 +428,6 @@ def linear_reconstruct(
                         prefix_key = tuple(seq[:-1])
                         if prefix_key in next_hits_by_prefix:
                             next_hits_by_prefix[prefix_key][layer_idx].append((seq, error))
-                    # CaGIA-Opt 增量截断：每个 batch 每层处理后，对该 prefix 该层仅保留 top-k，
-                    # 避免 next_hits_by_prefix 膨胀。数学等价于一次性 top-k。
                     if optimized:
                         for prefix_key in next_hits_by_prefix:
                             next_hits_by_prefix[prefix_key][layer_idx] = top_k_by_error(
@@ -508,9 +461,6 @@ def linear_reconstruct(
                 group_next = extend_prefixes(group)
                 for prefix in group:
                     unique_next = group_next.get(tuple(prefix), [])
-                    # 过滤掉末尾连续相同 token 的扩展序列（如 [8140, 8140]），
-                    # 仅当存在其他有效组合（如 [8140, 3352]）时才保留；
-                    # 若全部扩展均为连续重复，则保留前缀作为已完成序列
                     valid_next = [seq for seq in unique_next if not _has_consecutive_duplicate_tail(seq)]
                     if not valid_next:
                         completed.append(prefix)
@@ -541,7 +491,6 @@ def dager_reconstruct(ctx: AttackContext, cfg: Dict) -> Dict:
     gradient_keywords = linear_gradient_keywords(peft_method, gradient_keyword, hook_module)
 
     projection = cfg.get("gradient_projection")
-    # nn.Linear 的权重梯度 (out, in) 需要转置为 (in, out) 才能正确匹配输入激活
     transpose_gradient = _is_linear_module(ctx.global_model, hook_module)
     matrices = gradient_matrices_by_keywords(ctx.uploaded_gradients, gradient_keywords, projection, transpose=transpose_gradient)
     if not matrices:
@@ -549,7 +498,6 @@ def dager_reconstruct(ctx: AttackContext, cfg: Dict) -> Dict:
     if len(matrices) < 2:
         return {"reconstructed_text": [], "token_ids": [], "status": "insufficient_gradient_layers"}
 
-    # 当 PEFT 方法为 partial 时，检测满秩方阵梯度并移除 1-2 个神经元梯度列以保持低秩
     matrices = _reduce_full_rank_matrices(matrices, peft_method, cfg)
 
     device = ctx.device
@@ -563,12 +511,10 @@ def dager_reconstruct(ctx: AttackContext, cfg: Dict) -> Dict:
 
     store, handles = register_attention_input_hooks(ctx.global_model, hook_module)
     try:
-        # 先用 embedding 过滤掉零嵌入 token，与原版 DAGER 的 Token_index_effective 一致
         effective_tokens = effective_single_tokens(ctx.global_model, ctx.tokenizer, device, vocab_batch_size, embedding_epsilon)
         vocab = torch.tensor([tok[0] for tok in effective_tokens], device=device)
         position_candidates: List[List[int]] = [[] for _ in range(guess_len)]
 
-        # 第一步：利用第一个transformer层的梯度推断每个位置有哪些词
         for chunk in batch_tensor(vocab, vocab_batch_size):
             ids = chunk.unsqueeze(1).repeat(1, guess_len)
             for batch_ids, acts in _collect_candidates(ctx.global_model, [ids], store, hook_module, device, slice(None)):
@@ -583,20 +529,17 @@ def dager_reconstruct(ctx: AttackContext, cfg: Dict) -> Dict:
         if not position_candidates:
             return {"reconstructed_text": [], "token_ids": [], "position_candidates": [], "status": "no_position_candidates"}
 
-        # 将所有位置的候选词统一成一个集合
         unified_token_set: List[int] = []
         for tokens in position_candidates:
             for token in tokens:
                 if token not in unified_token_set:
                     unified_token_set.append(token)
-        print(f"[DAGER] 统一候选token集合大小: {len(unified_token_set)}")
 
         possible: List[List[int]] = [[token] for token in unified_token_set]
         delayed: List[List[int]] = []
         completed: List[List[int]] = []
         link_layer = 1
 
-        # 第二步：每个位置都在统一的集合中选择候选token进行搜索
         for pos in range(max_len - 1):
             next_tokens = [[token] for token in unified_token_set]
             current = possible[:]
@@ -614,9 +557,6 @@ def dager_reconstruct(ctx: AttackContext, cfg: Dict) -> Dict:
                     for row, _col, _error in find_expressible_vectors(matrix, acts[link_layer], tol, chunk_size):
                         hits_for_prefix.append(ids[row].tolist())
                 hits_for_prefix = [list(seq) for seq in dict.fromkeys(tuple(x) for x in hits_for_prefix)]
-                # 过滤掉末尾连续相同 token 的扩展序列（如 [8140, 8140]），
-                # 仅当存在其他有效组合（如 [8140, 3352]）时才保留；
-                # 若全部扩展均为连续重复，则保留前缀作为已完成序列
                 valid_hits = [seq for seq in hits_for_prefix if not _has_consecutive_duplicate_tail(seq)]
                 if not valid_hits:
                     completed.append(prefix)

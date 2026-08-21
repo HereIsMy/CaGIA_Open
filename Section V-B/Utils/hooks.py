@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 from typing import List, Sequence, Tuple
 
@@ -8,8 +8,6 @@ import torch
 class ActivationStore:
     def __init__(self) -> None:
         self.values: List[torch.Tensor] = []
-        # 指定只保存序列中哪个位置的激活，避免保存完整序列浪费显存。
-        # None 表示保存完整序列；整数表示序列中对应索引（支持负数）。
         self.token_index = None
 
     def clear(self) -> None:
@@ -18,7 +16,6 @@ class ActivationStore:
     def hook(self, _module, inputs, _output) -> None:
         if inputs:
             x = inputs[0].detach()
-            # 仅保存目标位置的激活 (batch, hidden_dim)，避免保存完整序列 (batch, seq_len, hidden_dim)
             if self.token_index is not None:
                 x = x[:, self.token_index, :]
             self.values.append(x)

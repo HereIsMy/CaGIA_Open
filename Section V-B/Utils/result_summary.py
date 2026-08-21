@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import csv
 import json
@@ -16,12 +16,6 @@ def _mean(values: List[float]) -> float:
 
 
 def recalculate_metrics_in_results(results_path: str) -> None:
-    """遍历 results.json 中的记录，仅重新计算指标，不重跑实验。
-
-    每次运行 main.py 时调用：读取已落盘的重建结果（reference_text 与
-    attack.reconstructed_text），用最新的指标计算方法重新计算 metrics 字段
-    并写回 results.json。这样修改指标算法后无需重跑攻击即可刷新历史结果。
-    """
     from .metrics import calculate_batch_metrics
 
     results_file = Path(results_path)
@@ -35,7 +29,6 @@ def recalculate_metrics_in_results(results_path: str) -> None:
         reference_text = record.get("reference_text", [])
         attack = record.get("attack", {}) or {}
         reconstructed_text = attack.get("reconstructed_text", [])
-        # 缺少参考文本或重建结果，无法重算指标
         if not reference_text:
             skipped += 1
             continue
@@ -45,16 +38,9 @@ def recalculate_metrics_in_results(results_path: str) -> None:
 
     if updated:
         results_file.write_text(json.dumps(records, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"[Metrics] 已重新计算 {updated} 条记录的指标（跳过 {skipped} 条缺少参考文本的记录）。")
 
 
 def rebuild_summary_from_results(results_path: str, summary_path: str) -> None:
-    """从 results.json 重建 summary.json。
-
-    每次运行末尾调用，用 results.json 中的全部记录重新生成 summary.json，
-    保证 summary 始终是 results 的准确派生视图。
-    缺少 model_name/peft_method/batch_size 的旧记录会被跳过（重跑后会回填）。
-    """
     results_file = Path(results_path)
     summary_file = Path(summary_path)
     summary_file.parent.mkdir(parents=True, exist_ok=True)
@@ -73,7 +59,6 @@ def rebuild_summary_from_results(results_path: str, summary_path: str) -> None:
         method_name = record.get("method_name")
         batch_size = record.get("batch_size")
         metrics = record.get("metrics")
-        # 跳过缺少必要字段的旧记录（重跑后会回填，再重建即可纳入）
         if not all(v is not None for v in [model_name, peft_method, method_name, batch_size]) or not metrics:
             skipped += 1
             continue
@@ -81,7 +66,6 @@ def rebuild_summary_from_results(results_path: str, summary_path: str) -> None:
         data_name = str(record.get("data_name", ""))
         key = (str(model_name), str(peft_method), str(method_name).lower(), int(batch_size), data_name)
         details = metrics.get("sentence_details", [])
-        # 计算该batch正确重建的token总数（所有句子的correct_tokens求和）
         batch_recon_token_count = sum(float(d.get("correct_tokens", 0.0)) for d in details)
         grouped.setdefault(key, []).append(
             {
@@ -123,11 +107,10 @@ def rebuild_summary_from_results(results_path: str, summary_path: str) -> None:
     )
     summary_file.write_text(json.dumps(rows, ensure_ascii=False, indent=2), encoding="utf-8")
     if skipped:
-        print(f"[Summary] 跳过 {skipped} 条缺少 model_name/peft_method/batch_size 的旧记录，重跑后会自动回填。")
+        pass
 
 
 class ResultSummaryWriter:
-    """Maintain final method-level averages from per-batch attack metrics."""
 
     def __init__(self, path: str):
         self.path = Path(path)
@@ -154,19 +137,16 @@ class ResultSummaryWriter:
                 rows = list(csv.DictReader(handle))
 
         for row in rows:
-            # 兼容旧字段名
             if "mean_recon_token_count" not in row:
                 if "mean_correct_token_count" in row:
                     row["mean_recon_token_count"] = row.pop("mean_correct_token_count")
                 elif "mean_reconstructed_token_count" in row:
                     row["mean_recon_token_count"] = row.pop("mean_reconstructed_token_count")
-            # 兼容旧结果：补齐 data_name 字段（缺失则置空，由 save() 进一步处理）
             row.setdefault("data_name", "")
         return rows
 
     def append_batch(self, cfg: Dict[str, Any], method_name: str, metrics: Dict[str, Any]) -> None:
         details = metrics.get("sentence_details", [])
-        # 计算该batch正确重建的token总数（所有句子的correct_tokens求和）
         batch_recon_token_count = sum(float(item.get("correct_tokens", 0.0)) for item in details)
         self.batch_records.append(
             {
@@ -214,10 +194,6 @@ class ResultSummaryWriter:
                 }
             )
 
-        # 加载旧行并兼容回填：
-        #  - 旧行缺少 data_name（记为空串）；
-        #  - 若本次运行已产出同 (model, peft, method, batch_size) 的新行，则旧行视为已被覆盖，丢弃；
-        #  - 否则保留旧行（未重跑的历史数据），data_name 留空。
         new_other_keys = {
             (r["model_name"], r["peft_method"], r["reconstruction_method"], r["batch_size"])
             for r in rows
@@ -232,7 +208,6 @@ class ResultSummaryWriter:
                     int(row["batch_size"]),
                 )
                 if other_key in new_other_keys:
-                    # 旧行已被本次新行覆盖，丢弃
                     continue
             legacy_rows.append(row)
 

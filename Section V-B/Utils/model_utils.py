@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import types
 from pathlib import Path
@@ -101,7 +101,6 @@ def _linear_in_features(module: nn.Module, hidden: int) -> int:
     if hasattr(module, "in_features"):
         return int(module.in_features)
     if hasattr(module, "weight") and getattr(module.weight, "ndim", 0) >= 2:
-        # Hugging Face Conv1D stores weight as [in_features, out_features].
         if hasattr(module, "nf"):
             return int(module.weight.shape[0])
         return int(module.weight.shape[1])
@@ -180,22 +179,20 @@ def insert_adapters(model: torch.nn.Module, reduction_factor: float, layer_start
 def configure_peft(model: torch.nn.Module, peft_cfg: Dict, num_labels: int) -> List[torch.nn.Parameter]:
     add_classification_head(model, num_labels)
     method = str(peft_cfg.get("method", "partial")).lower()
-    
-    # 从peft_config模块获取默认配置
+
     try:
         from .peft_config import get_default_peft_config
         default_config = get_default_peft_config(method)
     except Exception:
         default_config = {}
-    
-    # 使用配置文件中的值，如果没有则使用默认值
+
     target_path = peft_cfg.get("target_module", default_config.get("target_module", "attn.c_attn"))
     reduction_factor = float(peft_cfg.get("reduction_factor", default_config.get("reduction_factor", 64)))
     layer_start = int(peft_cfg.get("layer_start", default_config.get("layer_start", 0)))
     layer_end = int(peft_cfg.get("layer_end", default_config.get("layer_end", 10**9)))
     train_keywords = peft_cfg.get("train_keywords", default_config.get("train_keywords"))
     resolved_target_path = resolve_target_module_path(model, target_path) if method in {"partial", "lora", "mlp"} else target_path
-    
+
     peft_cfg["resolved_target_module"] = resolved_target_path
     peft_cfg["resolved_layer_start"], peft_cfg["resolved_layer_end"] = resolve_layer_range(model, layer_start, layer_end)
 
@@ -206,8 +203,7 @@ def configure_peft(model: torch.nn.Module, peft_cfg: Dict, num_labels: int) -> L
 
     for param in model.parameters():
         param.requires_grad = False
-    
-    # 如果没有指定train_keywords，则使用默认值
+
     if train_keywords is None:
         train_keywords = {
             "lora": ["lora_layer", "classification_head"],
@@ -218,7 +214,7 @@ def configure_peft(model: torch.nn.Module, peft_cfg: Dict, num_labels: int) -> L
     else:
         train_keywords = [resolved_target_path if str(keyword) == str(target_path) else keyword for keyword in train_keywords]
     peft_cfg["train_keywords"] = train_keywords
-    
+
     trainable = []
     for name, param in model.named_parameters():
         if not any(keyword in name for keyword in train_keywords):
@@ -255,7 +251,6 @@ def load_model_and_tokenizer(model_name: str, num_labels: int, peft_cfg: Dict, d
 
 
 def _resolve_model_name_or_path(name_or_path: str) -> str:
-    """Return a valid local model directory or a Hugging Face repo id."""
     path = Path(name_or_path).expanduser()
     if path.exists():
         return str(path)
