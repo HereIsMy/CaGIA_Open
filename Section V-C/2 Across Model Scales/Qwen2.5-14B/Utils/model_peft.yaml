@@ -1,0 +1,97 @@
+# 各模型的 PEFT 模块路径配置
+# key 对应 config.yaml 中 model_path 的别名（如 GPT2large / llama3 / Qwen2.5 / GPToss）
+# 每个模型为每种 PEFT 方法配置 target_module 和 train_keywords
+# config.yaml 的 peft 部分只保留 reduction_factor / layer_start / layer_end 等参数
+
+# ==================== GPT 系列结构 ====================
+# GPT2 / GPT2large / GPToss 使用 Conv1D: attn.c_attn, attn.c_proj, mlp.c_fc, mlp.c_proj
+GPT2:
+  partial:
+    target_module: attn.c_attn
+    train_keywords: [attn.c_attn, classification_head]
+  mlp:
+    target_module: mlp.c_fc
+    train_keywords: [mlp.c_fc, classification_head]
+  lora:
+    target_module: attn.c_attn
+    train_keywords: [lora_layer, classification_head]
+  adapter:
+    target_module: adapter
+    train_keywords: [adapter, classification_head]
+
+GPT2large:
+  partial:
+    target_module: attn.c_attn
+    train_keywords: [attn.c_attn, classification_head]
+  mlp:
+    target_module: mlp.c_fc
+    train_keywords: [mlp.c_fc, classification_head]
+  lora:
+    target_module: attn.c_attn
+    train_keywords: [lora_layer, classification_head]
+  adapter:
+    target_module: adapter
+    train_keywords: [adapter, classification_head]
+
+# GPToss 采用 GPT2 风格的模块结构
+GPToss:
+  partial:
+    target_module: attn.c_attn
+    train_keywords: [attn.c_attn, classification_head]
+  mlp:
+    target_module: mlp.c_fc
+    train_keywords: [mlp.c_fc, classification_head]
+  lora:
+    target_module: attn.c_attn
+    train_keywords: [lora_layer, classification_head]
+  adapter:
+    target_module: adapter
+    train_keywords: [adapter, classification_head]
+
+# ==================== Llama 系列结构 ====================
+# llama3 / Qwen2.5 使用 nn.Linear: self_attn.q_proj, self_attn.o_proj,
+# mlp.gate_proj, mlp.up_proj, mlp.down_proj
+# 注意：参考代码使用 self_attn.o_proj（注意力输出投影），对应 GPT2 的 attn.c_proj
+# q_proj 只产生查询向量，梯度信息不足以有效重建输入文本
+llama3:
+  partial:
+    target_module: self_attn.o_proj
+    train_keywords: [self_attn.o_proj, classification_head]
+  mlp:
+    target_module: mlp.gate_proj
+    train_keywords: [mlp.gate_proj, classification_head]
+  lora:
+    target_module: self_attn.o_proj
+    train_keywords: [lora_layer, classification_head]
+  adapter:
+    target_module: adapter
+    train_keywords: [adapter, classification_head]
+
+Qwen2.5:
+  partial:
+    target_module: self_attn.o_proj
+    train_keywords: [self_attn.o_proj, classification_head]
+  mlp:
+    target_module: mlp.gate_proj
+    train_keywords: [mlp.gate_proj, classification_head]
+  lora:
+    target_module: self_attn.o_proj
+    train_keywords: [lora_layer, classification_head]
+  adapter:
+    target_module: adapter
+    train_keywords: [adapter, classification_head]
+
+# Qwen2.5-14B 采用与 Qwen2.5 相同的 Llama 风格模块结构
+Qwen14:
+  partial:
+    target_module: self_attn.o_proj
+    train_keywords: [self_attn.o_proj, classification_head]
+  mlp:
+    target_module: mlp.gate_proj
+    train_keywords: [mlp.gate_proj, classification_head]
+  lora:
+    target_module: self_attn.o_proj
+    train_keywords: [lora_layer, classification_head]
+  adapter:
+    target_module: adapter
+    train_keywords: [adapter, classification_head]

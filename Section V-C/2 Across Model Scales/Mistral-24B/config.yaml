@@ -1,0 +1,155 @@
+# 配置文件：Mistral-Small-3.1-24B 文本重建实验
+# 基于 Mistral3 多模态模型，仅使用语言模型部分进行文本重建
+
+# 默认配置
+seed: 1
+device: cuda:1
+
+model_path:
+  GPT2: /home/zhike/DGL/Model/GPT2
+  GPT2large: /home/zhike/DGL/Model/GPT2-large
+  llama3: /home/zhike/DGL/Model/Llama3-8B-Instruct
+  Qwen2.5: /home/zhike/DGL/Model/Qwen2.5-3B-Instruct
+  GPToss: /home/zhike/DGL/Model/gpt-oss-20b/openai-mirror/gpt-oss-20b
+  Qwen14: /home/zhike/DGL/Model/Qwen2.5-14B
+  Mistral: /home/zhike/DGL/Model/mistral-small-3.1-24b/mistralai/Mistral-Small-3-1-24B-Base-2503
+
+data_path:
+  CoLA: /home/zhike/DGL/Dataset/cola_public_1.1/cola_public/raw/in_domain_train.tsv
+  SST: /home/zhike/DGL/Dataset/SST/train.csv
+  Yelp: /home/zhike/DGL/Dataset/YELP/yelp_academic_dataset_tip/yelp_academic_dataset_tip.json
+  IMDB: /home/zhike/DGL/Dataset/aclImdb_v1/aclImdb/train
+
+model:
+  name_or_path: Mistral
+
+data:
+  path: [CoLA]
+  batch_size: [2]
+  max_length: 128
+  shuffle: false
+
+federated:
+  rounds: 1
+  num_clients: 10
+  local_batches: 1
+  client_lr: 0.00001
+  server_lr: 0.00001
+
+# ==================== PEFT配置 ====================
+# 可训练方法仅包含 lora 和 partial 两种
+# 使用 LoRA 在 q_proj 插入低秩适配器，生成低秩梯度矩阵（5120×80），提供强判别能力
+# 注意：partial 方法会生成满秩梯度矩阵（5120×5120），列空间=R^5120，导致所有token残差≈0，
+# 攻击完全失效。必须使用 lora 方法。
+selected_peft: [partial]
+
+peft:
+  partial:
+    layer_start: 0
+    layer_end: 8  # 保留前4层 transformer
+
+  lora:
+    reduction_factor: 64
+    layer_start: 1  # 跳过第0层，与参考项目一致（layers[1:]）
+    layer_end: 4
+
+# ==================== 显存管理配置 ====================
+memory:
+  enable_dynamic_batch: true
+  target_memory_usage: 0.85
+  safety_margin: 0.1
+  min_free_memory_gb: 2.0
+  memory_estimate_multiplier: 4.0
+  verbose_memory: true
+
+# ==================== 运行配置 ====================
+run:
+  methods: [cagia-opt, cagia-naive, dlg, tag, lamp, partial-gradient, grab, dager]
+  attack_client: 0
+  reconstruction_batches: 5
+  transformer_layer_index: null
+
+# ==================== 各方法参数 ====================
+methods:
+  cagia-opt:
+    gradient_projection: full
+    max_length: 100
+    tolerance: 100  # 与参考项目 find_expressible_vectors3 默认 tol_error=100 一致
+    error_ratio_threshold: 5
+    top_k: 150
+    first_batch_size: 16384
+    combination_batch_size: 16384
+    max_scan_batch_size: 16384
+    min_scan_batch_size: 64
+    prefix_group_size: 8
+    chunk_size: 1024
+    reduce_full_rank_neurons: 1
+    embedding_epsilon: 1e-9
+
+  cagia-naive:
+    gradient_projection: full
+    max_length: 100
+    tolerance: 0.001  # 与参考项目 find_expressible_vectors3 默认 tol_error=100 一致
+    top_k: 200
+    first_batch_size: 16384
+    combination_batch_size: 16384
+    max_scan_batch_size: 16384
+    min_scan_batch_size: 64
+    prefix_group_size: 8
+    chunk_size: 1024
+    reduce_full_rank_neurons: 1
+    embedding_epsilon: 1e-9
+
+  dager:
+    gradient_projection: full
+    max_length: 100
+    guess_max_length: 100
+    vocab_batch_size: 32
+    combination_batch_size: 1280
+    tolerance: 0.001
+    reduce_full_rank_neurons: 1
+    embedding_epsilon: 1e-9
+
+  grab:
+    iterations: 2000
+    restarts: 5
+    lr: 0.01
+    alpha: 0.01
+    beta: 0.0
+    beam: 4
+    discrete_iterations: 5
+    num_permutations: 2000
+    init_size: 500
+    similarity_regularization: 0.0
+
+  dlg:
+    iterations: 4000
+    restarts: 3
+    lr: 0.05
+    gradient_norm: l2
+
+  tag:
+    iterations: 4000
+    restarts: 3
+    lr: 0.05
+    alpha: 0.01
+    gradient_norm: l2
+
+  lamp:
+    iterations: 4000
+    restarts: 3
+    lr: 0.05
+    beta: 0.01
+    discrete_iterations: 5
+    discrete_candidates: 24
+    lm_weight: 0.0
+
+  partial-gradient:
+    iterations: 4000
+    restarts: 3
+    lr: 0.05
+    gradient_keyword: self_attn.q_proj  # Mistral 使用 Llama 风格模块路径，LoRA 插入 q_proj
+
+output:
+  path: results/results.json
+  summary_path: results/summary.json

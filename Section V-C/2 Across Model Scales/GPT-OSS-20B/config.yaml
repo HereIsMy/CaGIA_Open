@@ -1,0 +1,151 @@
+# 配置文件：gpt-oss-20b 全精度（float32）4层 transformer 文本重建实验
+# 基于 load_gptoss_fullprecision.py 的全精度加载方式，复现所有文本重建方法
+
+# 默认配置
+seed: 1
+device: cuda:0
+
+model_path:
+  GPT2: /home/zhike/DGL/Model/GPT2
+  GPT2large: /home/zhike/DGL/Model/GPT2-large
+  llama3: /home/zhike/DGL/Model/Llama3-8B-Instruct
+  Qwen2.5: /home/zhike/DGL/Model/Qwen2.5-3B-Instruct
+  GPToss: /home/zhike/DGL/Model/gpt-oss-20b/openai-mirror/gpt-oss-20b
+  Qwen14: /home/zhike/DGL/Model/Qwen2.5-14B
+
+data_path:
+  CoLA: /home/zhike/DGL/Dataset/cola_public_1.1/cola_public/raw/in_domain_train.tsv
+  SST: /home/zhike/DGL/Dataset/SST/train.csv
+  Yelp: /home/zhike/DGL/Dataset/YELP/yelp_academic_dataset_tip/yelp_academic_dataset_tip.json
+  IMDB: /home/zhike/DGL/Dataset/aclImdb_v1/aclImdb/train
+
+model:
+  name_or_path: GPToss
+
+data:
+  path: [CoLA]
+  batch_size: [2]  # 按要求设置为 [2, 8]
+  max_length: 128
+  shuffle: false
+
+federated:
+  rounds: 1
+  num_clients: 10
+  local_batches: 1
+  client_lr: 0.00001
+  server_lr: 0.00001
+
+# ==================== PEFT配置 ====================
+# 可训练方法仅包含 lora 和 partial 两种
+selected_peft: [partial]
+
+peft:
+  partial:
+    layer_start: 0
+    layer_end: 8  # 保留前4层 transformer
+
+  lora:
+    reduction_factor: 64  # 复现原代码 GPToss_LoRA_Opt.py: rank_factor=64
+    layer_start: 0
+    layer_end: 8  # 复现原代码: model.layers = model.layers[0:4]
+
+# ==================== 显存管理配置 ====================
+memory:
+  enable_dynamic_batch: true
+  target_memory_usage: 0.8  # MoE 模型 forward 显存不可预测，降低目标使用率
+  safety_margin: 0.1  # 增大安全边际
+  min_free_memory_gb: 2.0
+  memory_estimate_multiplier: 12.0  # MoE 32专家，增大估算倍数
+  verbose_memory: true  # 启用详细显存日志，帮助调试 OOM
+
+# ==================== 运行配置 ====================
+run:
+  methods: [cagia-opt, cagia-naive, dager, dlg, tag, lamp, partial-gradient, grab]
+  attack_client: 0
+  reconstruction_batches: 5
+  transformer_layer_index: null
+
+# ==================== 各方法参数 ====================
+methods:
+  cagia-opt:
+    gradient_projection: full
+    max_length: 100
+    tolerance: 10  # 保持较大容差让足够多 token 通过过滤，select_by_error_ratio 会通过 ratio gap 筛选
+    error_ratio_threshold: 5
+    top_k: 150
+    first_batch_size: 8192  # MoE 32专家 float32，显存敏感，需大幅减小
+    combination_batch_size: 256
+    max_scan_batch_size: 8192
+    min_scan_batch_size: 16
+    prefix_group_size: 8
+    chunk_size: 1024
+    reduce_full_rank_neurons: 1
+    embedding_epsilon: 1.0e-18
+
+  cagia-naive:
+    gradient_projection: full
+    max_length: 100
+    tolerance: 0.001  # 与参考项目一致，CaGIA-Naive 使用更严格的容差
+    top_k: 200
+    first_batch_size: 8192  # MoE 32专家 float32，显存敏感，需大幅减小
+    combination_batch_size: 256
+    max_scan_batch_size: 8192
+    min_scan_batch_size: 16
+    prefix_group_size: 8
+    chunk_size: 1024
+    reduce_full_rank_neurons: 1
+    embedding_epsilon: 1.0e-18
+
+  dager:
+    gradient_projection: full
+    max_length: 100
+    guess_max_length: 100
+    vocab_batch_size: 32  # MoE 32专家 float32，显存敏感
+    combination_batch_size: 128
+    tolerance: 0.001
+    reduce_full_rank_neurons: 1
+    embedding_epsilon: 1.0e-15
+
+  grab:
+    iterations: 200
+    restarts: 5
+    lr: 0.01
+    alpha: 0.01
+    beta: 0.0
+    beam: 4
+    discrete_iterations: 5
+    num_permutations: 200
+    init_size: 200  # MoE 32专家 float32，显存敏感
+    similarity_regularization: 0.0
+
+  dlg:
+    iterations: 4000
+    restarts: 3
+    lr: 0.05
+    gradient_norm: l2
+
+  tag:
+    iterations: 4000
+    restarts: 3
+    lr: 0.05
+    alpha: 0.01
+    gradient_norm: l2
+
+  lamp:
+    iterations: 4000
+    restarts: 3
+    lr: 0.05
+    beta: 0.01
+    discrete_iterations: 5
+    discrete_candidates: 24
+    lm_weight: 0.0
+
+  partial-gradient:
+    iterations: 4000
+    restarts: 3
+    lr: 0.05
+    gradient_keyword: self_attn.o_proj  # GPToss 使用 Llama 风格模块路径
+
+output:
+  path: results/results.json
+  summary_path: results/summary.json

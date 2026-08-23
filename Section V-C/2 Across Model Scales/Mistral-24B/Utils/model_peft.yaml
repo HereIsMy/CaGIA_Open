@@ -1,0 +1,104 @@
+# 各模型的 PEFT 模块路径配置
+# key 对应 config.yaml 中 model_path 的别名（如 GPT2large / llama3 / Qwen2.5 / GPToss）
+# 每个模型为每种 PEFT 方法配置 target_module 和 train_keywords
+# config.yaml 的 peft 部分只保留 reduction_factor / layer_start / layer_end 等参数
+
+# ==================== GPT 系列结构 ====================
+# GPT2 / GPT2large / GPToss 使用 Conv1D: attn.c_attn, attn.c_proj, mlp.c_fc, mlp.c_proj
+GPT2:
+  partial:
+    target_module: attn.c_attn
+    train_keywords: [attn.c_attn, classification_head]
+  mlp:
+    target_module: mlp.c_fc
+    train_keywords: [mlp.c_fc, classification_head]
+  lora:
+    target_module: attn.c_attn
+    train_keywords: [lora_layer, classification_head]
+  adapter:
+    target_module: adapter
+    train_keywords: [adapter, classification_head]
+
+GPT2large:
+  partial:
+    target_module: attn.c_attn
+    train_keywords: [attn.c_attn, classification_head]
+  mlp:
+    target_module: mlp.c_fc
+    train_keywords: [mlp.c_fc, classification_head]
+  lora:
+    target_module: attn.c_attn
+    train_keywords: [lora_layer, classification_head]
+  adapter:
+    target_module: adapter
+    train_keywords: [adapter, classification_head]
+
+# GPToss 采用 Llama 风格的模块结构：self_attn.q_proj/k_proj/v_proj/o_proj
+# 实际模型类型为 gpt_oss，transformers 4.57+ 原生支持
+# 注意：attn 输入投影为 o_proj（注意力输出），与 Llama3/Qwen2.5 一致
+GPToss:
+  partial:
+    target_module: self_attn.o_proj
+    train_keywords: [self_attn.o_proj, classification_head]
+  mlp:
+    target_module: mlp.gate_proj
+    train_keywords: [mlp.gate_proj, classification_head]
+  lora:
+    target_module: self_attn.o_proj  # 在注意力输出投影插入 LoRA，与 Llama3/Qwen2.5 一致
+    train_keywords: [lora_layer, classification_head]
+  adapter:
+    target_module: adapter
+    train_keywords: [adapter, classification_head]
+
+# ==================== Llama 系列结构 ====================
+# llama3 / Qwen2.5 使用 nn.Linear: self_attn.q_proj, self_attn.o_proj,
+# mlp.gate_proj, mlp.up_proj, mlp.down_proj
+# 注意：参考代码使用 self_attn.o_proj（注意力输出投影），对应 GPT2 的 attn.c_proj
+# q_proj 只产生查询向量，梯度信息不足以有效重建输入文本
+llama3:
+  partial:
+    target_module: self_attn.o_proj
+    train_keywords: [self_attn.o_proj, classification_head]
+  mlp:
+    target_module: mlp.gate_proj
+    train_keywords: [mlp.gate_proj, classification_head]
+  lora:
+    target_module: self_attn.o_proj
+    train_keywords: [lora_layer, classification_head]
+  adapter:
+    target_module: adapter
+    train_keywords: [adapter, classification_head]
+
+Qwen2.5:
+  partial:
+    target_module: self_attn.o_proj
+    train_keywords: [self_attn.o_proj, classification_head]
+  mlp:
+    target_module: mlp.gate_proj
+    train_keywords: [mlp.gate_proj, classification_head]
+  lora:
+    target_module: self_attn.o_proj
+    train_keywords: [lora_layer, classification_head]
+  adapter:
+    target_module: adapter
+    train_keywords: [adapter, classification_head]
+
+# ==================== Mistral 系列结构 ====================
+# Mistral 使用 Llama 风格的 nn.Linear 模块: self_attn.q_proj/k_proj/v_proj/o_proj,
+# mlp.gate_proj, mlp.up_proj, mlp.down_proj
+# Mistral3 (Mistral3ForConditionalGeneration) 是多模态模型，提取 language_model 后
+# 结构与 MistralForCausalLM 一致，transformer 层路径为 model.layers
+# 注意：LoRA 插入 q_proj（注意力输入投影），与参考项目一致，生成低秩梯度矩阵
+Mistral:
+  partial:
+    target_module: self_attn.q_proj
+    train_keywords: [self_attn.q_proj, classification_head]
+  mlp:
+    target_module: mlp.gate_proj
+    train_keywords: [mlp.gate_proj, classification_head]
+  lora:
+    target_module: self_attn.q_proj
+    train_keywords: [lora_layer, classification_head]
+  adapter:
+    target_module: adapter
+    train_keywords: [adapter, classification_head]
