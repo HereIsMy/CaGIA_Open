@@ -1,0 +1,131 @@
+[
+  {
+    "batch_size": 1,
+    "reference_text": [
+      "I'll fix you a drink."
+    ],
+    "reconstruct_text": [
+      "ographers",
+      " recipes",
+      " I",
+      "I'll fix a",
+      "I'll fix you a drink."
+    ]
+  },
+  {
+    "batch_size": 1,
+    "reference_text": [
+      "Fred watered the plants flat."
+    ],
+    "reconstruct_text": [
+      " sust",
+      "def",
+      " century",
+      " Pun",
+      " Ir",
+      " medic",
+      " Fred",
+      "Fred watered the plants flat."
+    ]
+  },
+  {
+    "batch_size": 1,
+    "reference_text": [
+      "Bill coughed his way out of the restaurant."
+    ],
+    "reconstruct_text": [
+      "vy",
+      " Bill",
+      "doing",
+      "Bill coughed his way out of the restaurant."
+    ]
+  },
+  {
+    "batch_size": 1,
+    "reference_text": [
+      "We're dancing the night away."
+    ],
+    "reconstruct_text": [
+      " we",
+      " teenagers",
+      " they",
+      "I",
+      " Asians",
+      " adults",
+      "You",
+      " I",
+      " We're",
+      "We're dancing the night.",
+      "We're dancing the night away."
+    ]
+  },
+  {
+    "batch_size": 1,
+    "reference_text": [
+      "Herman hammered the metal flat."
+    ],
+    "reconstruct_text": [
+      " 430",
+      " 560",
+      "730",
+      "434",
+      "WW",
+      "610",
+      "oro",
+      "5",
+      " 8",
+      "dro",
+      " 610",
+      "odi",
+      " 480",
+      "565",
+      " 5",
+      " 7",
+      "hs",
+      "643",
+      " 570",
+      " 6",
+      "613",
+      "514",
+      " 465",
+      " H",
+      "h",
+      "477",
+      "523",
+      "780",
+      "635",
+      "537",
+      "7",
+      "548",
+      "733",
+      " 3",
+      " 980",
+      "330",
+      "033",
+      "128",
+      " MC",
+      "830",
+      "833",
+      "435",
+      "517",
+      "533",
+      " thousand",
+      " 4",
+      "ohn",
+      "860",
+      "6",
+      " 780",
+      "513",
+      " 660",
+      " 670",
+      "B",
+      " 530",
+      " 540",
+      "yz",
+      "553",
+      " 630",
+      "Herman hammered the metal.",
+      "Herman hammered the metal flat."
+    ]
+  }
+]

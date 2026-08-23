@@ -1,0 +1,37 @@
+[
+  {
+    "batch_size": 1,
+    "reference_text": [
+      "I'll fix you a drink."
+    ],
+    "reconstruct_text": []
+  },
+  {
+    "batch_size": 1,
+    "reference_text": [
+      "Fred watered the plants flat."
+    ],
+    "reconstruct_text": []
+  },
+  {
+    "batch_size": 1,
+    "reference_text": [
+      "Bill coughed his way out of the restaurant."
+    ],
+    "reconstruct_text": []
+  },
+  {
+    "batch_size": 1,
+    "reference_text": [
+      "We're dancing the night away."
+    ],
+    "reconstruct_text": []
+  },
+  {
+    "batch_size": 1,
+    "reference_text": [
+      "Herman hammered the metal flat."
+    ],
+    "reconstruct_text": []
+  }
+]

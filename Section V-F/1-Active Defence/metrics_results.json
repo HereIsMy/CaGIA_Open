@@ -1,0 +1,2772 @@
+{
+  "Naive-DP-0.01": {
+    "batch_metrics": {
+      "1": {
+        "rouge_l": 1.0,
+        "rouge_1": 1.0,
+        "rouge_2": 1.0,
+        "token_accuracy": 1.0,
+        "correct_tokens": 7.0,
+        "f1_score": 1.0
+      }
+    },
+    "list_metrics": {
+      "1": [
+        {
+          "mean_rouge_l": 1.0,
+          "mean_rouge_1": 1.0,
+          "mean_rouge_2": 1.0,
+          "mean_token_accuracy": 1.0,
+          "mean_correct_tokens": 7.0,
+          "mean_f1_score": 1.0,
+          "sentence_count": 1,
+          "total_correct_tokens": 7,
+          "sentence_details": [
+            {
+              "original": "I'll fix you a drink.",
+              "reconstructed": "I'll fix you a drink.",
+              "rouge_l": 1.0,
+              "rouge_1": 1.0,
+              "rouge_2": 1.0,
+              "token_accuracy": 1.0,
+              "correct_tokens": 7,
+              "f1_score": 1.0,
+              "total_tokens": 7,
+              "recon_token_count": 7
+            }
+          ]
+        },
+        {
+          "mean_rouge_l": 1.0,
+          "mean_rouge_1": 1.0,
+          "mean_rouge_2": 1.0,
+          "mean_token_accuracy": 1.0,
+          "mean_correct_tokens": 6.0,
+          "mean_f1_score": 1.0,
+          "sentence_count": 1,
+          "total_correct_tokens": 6,
+          "sentence_details": [
+            {
+              "original": "Fred watered the plants flat.",
+              "reconstructed": "Fred watered the plants flat.",
+              "rouge_l": 1.0,
+              "rouge_1": 1.0,
+              "rouge_2": 1.0,
+              "token_accuracy": 1.0,
+              "correct_tokens": 6,
+              "f1_score": 1.0,
+              "total_tokens": 6,
+              "recon_token_count": 6
+            }
+          ]
+        },
+        {
+          "mean_rouge_l": 1.0,
+          "mean_rouge_1": 1.0,
+          "mean_rouge_2": 1.0,
+          "mean_token_accuracy": 1.0,
+          "mean_correct_tokens": 9.0,
+          "mean_f1_score": 1.0,
+          "sentence_count": 1,
+          "total_correct_tokens": 9,
+          "sentence_details": [
+            {
+              "original": "Bill coughed his way out of the restaurant.",
+              "reconstructed": "Bill coughed his way out of the restaurant.",
+              "rouge_l": 1.0,
+              "rouge_1": 1.0,
+              "rouge_2": 1.0,
+              "token_accuracy": 1.0,
+              "correct_tokens": 9,
+              "f1_score": 1.0,
+              "total_tokens": 9,
+              "recon_token_count": 9
+            }
+          ]
+        },
+        {
+          "mean_rouge_l": 1.0,
+          "mean_rouge_1": 1.0,
+          "mean_rouge_2": 1.0,
+          "mean_token_accuracy": 1.0,
+          "mean_correct_tokens": 7.0,
+          "mean_f1_score": 1.0,
+          "sentence_count": 1,
+          "total_correct_tokens": 7,
+          "sentence_details": [
+            {
+              "original": "We're dancing the night away.",
+              "reconstructed": "We're dancing the night away.",
+              "rouge_l": 1.0,
+              "rouge_1": 1.0,
+              "rouge_2": 1.0,
+              "token_accuracy": 1.0,
+              "correct_tokens": 7,
+              "f1_score": 1.0,
+              "total_tokens": 7,
+              "recon_token_count": 7
+            }
+          ]
+        },
+        {
+          "mean_rouge_l": 1.0,
+          "mean_rouge_1": 1.0,
+          "mean_rouge_2": 1.0,
+          "mean_token_accuracy": 1.0,
+          "mean_correct_tokens": 6.0,
+          "mean_f1_score": 1.0,
+          "sentence_count": 1,
+          "total_correct_tokens": 6,
+          "sentence_details": [
+            {
+              "original": "Herman hammered the metal flat.",
+              "reconstructed": "Herman hammered the metal flat.",
+              "rouge_l": 1.0,
+              "rouge_1": 1.0,
+              "rouge_2": 1.0,
+              "token_accuracy": 1.0,
+              "correct_tokens": 6,
+              "f1_score": 1.0,
+              "total_tokens": 6,
+              "recon_token_count": 6
+            }
+          ]
+        }
+      ]
+    },
+    "mean_metrics": {
+      "rouge_l": 1.0,
+      "rouge_1": 1.0,
+      "rouge_2": 1.0,
+      "token_accuracy": 1.0,
+      "correct_tokens": 7.0,
+      "f1_score": 1.0
+    },
+    "details": [
+      {
+        "batch_size": "1",
+        "mean_rouge_l": 1.0,
+        "mean_rouge_1": 1.0,
+        "mean_rouge_2": 1.0,
+        "mean_token_accuracy": 1.0,
+        "mean_correct_tokens": 7.0,
+        "mean_f1_score": 1.0,
+        "list_details": [
+          {
+            "list_index": 0,
+            "rouge_l": 1.0,
+            "rouge_1": 1.0,
+            "rouge_2": 1.0,
+            "token_accuracy": 1.0,
+            "correct_tokens": 7,
+            "f1_score": 1.0,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "I'll fix you a drink.",
+                "reconstructed": "I'll fix you a drink.",
+                "rouge_l": 1.0,
+                "rouge_1": 1.0,
+                "rouge_2": 1.0,
+                "token_accuracy": 1.0,
+                "correct_tokens": 7,
+                "f1_score": 1.0,
+                "total_tokens": 7,
+                "recon_token_count": 7
+              }
+            ]
+          },
+          {
+            "list_index": 1,
+            "rouge_l": 1.0,
+            "rouge_1": 1.0,
+            "rouge_2": 1.0,
+            "token_accuracy": 1.0,
+            "correct_tokens": 6,
+            "f1_score": 1.0,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "Fred watered the plants flat.",
+                "reconstructed": "Fred watered the plants flat.",
+                "rouge_l": 1.0,
+                "rouge_1": 1.0,
+                "rouge_2": 1.0,
+                "token_accuracy": 1.0,
+                "correct_tokens": 6,
+                "f1_score": 1.0,
+                "total_tokens": 6,
+                "recon_token_count": 6
+              }
+            ]
+          },
+          {
+            "list_index": 2,
+            "rouge_l": 1.0,
+            "rouge_1": 1.0,
+            "rouge_2": 1.0,
+            "token_accuracy": 1.0,
+            "correct_tokens": 9,
+            "f1_score": 1.0,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "Bill coughed his way out of the restaurant.",
+                "reconstructed": "Bill coughed his way out of the restaurant.",
+                "rouge_l": 1.0,
+                "rouge_1": 1.0,
+                "rouge_2": 1.0,
+                "token_accuracy": 1.0,
+                "correct_tokens": 9,
+                "f1_score": 1.0,
+                "total_tokens": 9,
+                "recon_token_count": 9
+              }
+            ]
+          },
+          {
+            "list_index": 3,
+            "rouge_l": 1.0,
+            "rouge_1": 1.0,
+            "rouge_2": 1.0,
+            "token_accuracy": 1.0,
+            "correct_tokens": 7,
+            "f1_score": 1.0,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "We're dancing the night away.",
+                "reconstructed": "We're dancing the night away.",
+                "rouge_l": 1.0,
+                "rouge_1": 1.0,
+                "rouge_2": 1.0,
+                "token_accuracy": 1.0,
+                "correct_tokens": 7,
+                "f1_score": 1.0,
+                "total_tokens": 7,
+                "recon_token_count": 7
+              }
+            ]
+          },
+          {
+            "list_index": 4,
+            "rouge_l": 1.0,
+            "rouge_1": 1.0,
+            "rouge_2": 1.0,
+            "token_accuracy": 1.0,
+            "correct_tokens": 6,
+            "f1_score": 1.0,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "Herman hammered the metal flat.",
+                "reconstructed": "Herman hammered the metal flat.",
+                "rouge_l": 1.0,
+                "rouge_1": 1.0,
+                "rouge_2": 1.0,
+                "token_accuracy": 1.0,
+                "correct_tokens": 6,
+                "f1_score": 1.0,
+                "total_tokens": 6,
+                "recon_token_count": 6
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "Naive-DP-0.1": {
+    "batch_metrics": {
+      "1": {
+        "rouge_l": 0.0,
+        "rouge_1": 0.0,
+        "rouge_2": 0.0,
+        "token_accuracy": 0.0,
+        "correct_tokens": 0.0,
+        "f1_score": 0.0
+      }
+    },
+    "list_metrics": {
+      "1": [
+        {
+          "mean_rouge_l": 0.0,
+          "mean_rouge_1": 0.0,
+          "mean_rouge_2": 0.0,
+          "mean_token_accuracy": 0.0,
+          "mean_correct_tokens": 0.0,
+          "mean_f1_score": 0.0,
+          "sentence_count": 1,
+          "total_correct_tokens": 0,
+          "sentence_details": [
+            {
+              "original": "I'll fix you a drink.",
+              "reconstructed": "",
+              "rouge_l": 0.0,
+              "rouge_1": 0.0,
+              "rouge_2": 0.0,
+              "token_accuracy": 0.0,
+              "correct_tokens": 0,
+              "f1_score": 0.0,
+              "total_tokens": 7,
+              "recon_token_count": 0
+            }
+          ]
+        },
+        {
+          "mean_rouge_l": 0.0,
+          "mean_rouge_1": 0.0,
+          "mean_rouge_2": 0.0,
+          "mean_token_accuracy": 0.0,
+          "mean_correct_tokens": 0.0,
+          "mean_f1_score": 0.0,
+          "sentence_count": 1,
+          "total_correct_tokens": 0,
+          "sentence_details": [
+            {
+              "original": "Fred watered the plants flat.",
+              "reconstructed": "",
+              "rouge_l": 0.0,
+              "rouge_1": 0.0,
+              "rouge_2": 0.0,
+              "token_accuracy": 0.0,
+              "correct_tokens": 0,
+              "f1_score": 0.0,
+              "total_tokens": 6,
+              "recon_token_count": 0
+            }
+          ]
+        },
+        {
+          "mean_rouge_l": 0.0,
+          "mean_rouge_1": 0.0,
+          "mean_rouge_2": 0.0,
+          "mean_token_accuracy": 0.0,
+          "mean_correct_tokens": 0.0,
+          "mean_f1_score": 0.0,
+          "sentence_count": 1,
+          "total_correct_tokens": 0,
+          "sentence_details": [
+            {
+              "original": "Bill coughed his way out of the restaurant.",
+              "reconstructed": "",
+              "rouge_l": 0.0,
+              "rouge_1": 0.0,
+              "rouge_2": 0.0,
+              "token_accuracy": 0.0,
+              "correct_tokens": 0,
+              "f1_score": 0.0,
+              "total_tokens": 9,
+              "recon_token_count": 0
+            }
+          ]
+        },
+        {
+          "mean_rouge_l": 0.0,
+          "mean_rouge_1": 0.0,
+          "mean_rouge_2": 0.0,
+          "mean_token_accuracy": 0.0,
+          "mean_correct_tokens": 0.0,
+          "mean_f1_score": 0.0,
+          "sentence_count": 1,
+          "total_correct_tokens": 0,
+          "sentence_details": [
+            {
+              "original": "We're dancing the night away.",
+              "reconstructed": "",
+              "rouge_l": 0.0,
+              "rouge_1": 0.0,
+              "rouge_2": 0.0,
+              "token_accuracy": 0.0,
+              "correct_tokens": 0,
+              "f1_score": 0.0,
+              "total_tokens": 7,
+              "recon_token_count": 0
+            }
+          ]
+        },
+        {
+          "mean_rouge_l": 0.0,
+          "mean_rouge_1": 0.0,
+          "mean_rouge_2": 0.0,
+          "mean_token_accuracy": 0.0,
+          "mean_correct_tokens": 0.0,
+          "mean_f1_score": 0.0,
+          "sentence_count": 1,
+          "total_correct_tokens": 0,
+          "sentence_details": [
+            {
+              "original": "Herman hammered the metal flat.",
+              "reconstructed": "",
+              "rouge_l": 0.0,
+              "rouge_1": 0.0,
+              "rouge_2": 0.0,
+              "token_accuracy": 0.0,
+              "correct_tokens": 0,
+              "f1_score": 0.0,
+              "total_tokens": 6,
+              "recon_token_count": 0
+            }
+          ]
+        }
+      ]
+    },
+    "mean_metrics": {
+      "rouge_l": 0.0,
+      "rouge_1": 0.0,
+      "rouge_2": 0.0,
+      "token_accuracy": 0.0,
+      "correct_tokens": 0.0,
+      "f1_score": 0.0
+    },
+    "details": [
+      {
+        "batch_size": "1",
+        "mean_rouge_l": 0.0,
+        "mean_rouge_1": 0.0,
+        "mean_rouge_2": 0.0,
+        "mean_token_accuracy": 0.0,
+        "mean_correct_tokens": 0.0,
+        "mean_f1_score": 0.0,
+        "list_details": [
+          {
+            "list_index": 0,
+            "rouge_l": 0.0,
+            "rouge_1": 0.0,
+            "rouge_2": 0.0,
+            "token_accuracy": 0.0,
+            "correct_tokens": 0,
+            "f1_score": 0.0,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "I'll fix you a drink.",
+                "reconstructed": "",
+                "rouge_l": 0.0,
+                "rouge_1": 0.0,
+                "rouge_2": 0.0,
+                "token_accuracy": 0.0,
+                "correct_tokens": 0,
+                "f1_score": 0.0,
+                "total_tokens": 7,
+                "recon_token_count": 0
+              }
+            ]
+          },
+          {
+            "list_index": 1,
+            "rouge_l": 0.0,
+            "rouge_1": 0.0,
+            "rouge_2": 0.0,
+            "token_accuracy": 0.0,
+            "correct_tokens": 0,
+            "f1_score": 0.0,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "Fred watered the plants flat.",
+                "reconstructed": "",
+                "rouge_l": 0.0,
+                "rouge_1": 0.0,
+                "rouge_2": 0.0,
+                "token_accuracy": 0.0,
+                "correct_tokens": 0,
+                "f1_score": 0.0,
+                "total_tokens": 6,
+                "recon_token_count": 0
+              }
+            ]
+          },
+          {
+            "list_index": 2,
+            "rouge_l": 0.0,
+            "rouge_1": 0.0,
+            "rouge_2": 0.0,
+            "token_accuracy": 0.0,
+            "correct_tokens": 0,
+            "f1_score": 0.0,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "Bill coughed his way out of the restaurant.",
+                "reconstructed": "",
+                "rouge_l": 0.0,
+                "rouge_1": 0.0,
+                "rouge_2": 0.0,
+                "token_accuracy": 0.0,
+                "correct_tokens": 0,
+                "f1_score": 0.0,
+                "total_tokens": 9,
+                "recon_token_count": 0
+              }
+            ]
+          },
+          {
+            "list_index": 3,
+            "rouge_l": 0.0,
+            "rouge_1": 0.0,
+            "rouge_2": 0.0,
+            "token_accuracy": 0.0,
+            "correct_tokens": 0,
+            "f1_score": 0.0,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "We're dancing the night away.",
+                "reconstructed": "",
+                "rouge_l": 0.0,
+                "rouge_1": 0.0,
+                "rouge_2": 0.0,
+                "token_accuracy": 0.0,
+                "correct_tokens": 0,
+                "f1_score": 0.0,
+                "total_tokens": 7,
+                "recon_token_count": 0
+              }
+            ]
+          },
+          {
+            "list_index": 4,
+            "rouge_l": 0.0,
+            "rouge_1": 0.0,
+            "rouge_2": 0.0,
+            "token_accuracy": 0.0,
+            "correct_tokens": 0,
+            "f1_score": 0.0,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "Herman hammered the metal flat.",
+                "reconstructed": "",
+                "rouge_l": 0.0,
+                "rouge_1": 0.0,
+                "rouge_2": 0.0,
+                "token_accuracy": 0.0,
+                "correct_tokens": 0,
+                "f1_score": 0.0,
+                "total_tokens": 6,
+                "recon_token_count": 0
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "Naive-DP-1.5": {
+    "batch_metrics": {
+      "1": {
+        "rouge_l": 0.0,
+        "rouge_1": 0.0,
+        "rouge_2": 0.0,
+        "token_accuracy": 0.0,
+        "correct_tokens": 0.0,
+        "f1_score": 0.0
+      }
+    },
+    "list_metrics": {
+      "1": [
+        {
+          "mean_rouge_l": 0.0,
+          "mean_rouge_1": 0.0,
+          "mean_rouge_2": 0.0,
+          "mean_token_accuracy": 0.0,
+          "mean_correct_tokens": 0.0,
+          "mean_f1_score": 0.0,
+          "sentence_count": 1,
+          "total_correct_tokens": 0,
+          "sentence_details": [
+            {
+              "original": "I'll fix you a drink.",
+              "reconstructed": "",
+              "rouge_l": 0.0,
+              "rouge_1": 0.0,
+              "rouge_2": 0.0,
+              "token_accuracy": 0.0,
+              "correct_tokens": 0,
+              "f1_score": 0.0,
+              "total_tokens": 7,
+              "recon_token_count": 0
+            }
+          ]
+        },
+        {
+          "mean_rouge_l": 0.0,
+          "mean_rouge_1": 0.0,
+          "mean_rouge_2": 0.0,
+          "mean_token_accuracy": 0.0,
+          "mean_correct_tokens": 0.0,
+          "mean_f1_score": 0.0,
+          "sentence_count": 1,
+          "total_correct_tokens": 0,
+          "sentence_details": [
+            {
+              "original": "Fred watered the plants flat.",
+              "reconstructed": "",
+              "rouge_l": 0.0,
+              "rouge_1": 0.0,
+              "rouge_2": 0.0,
+              "token_accuracy": 0.0,
+              "correct_tokens": 0,
+              "f1_score": 0.0,
+              "total_tokens": 6,
+              "recon_token_count": 0
+            }
+          ]
+        },
+        {
+          "mean_rouge_l": 0.0,
+          "mean_rouge_1": 0.0,
+          "mean_rouge_2": 0.0,
+          "mean_token_accuracy": 0.0,
+          "mean_correct_tokens": 0.0,
+          "mean_f1_score": 0.0,
+          "sentence_count": 1,
+          "total_correct_tokens": 0,
+          "sentence_details": [
+            {
+              "original": "Bill coughed his way out of the restaurant.",
+              "reconstructed": "",
+              "rouge_l": 0.0,
+              "rouge_1": 0.0,
+              "rouge_2": 0.0,
+              "token_accuracy": 0.0,
+              "correct_tokens": 0,
+              "f1_score": 0.0,
+              "total_tokens": 9,
+              "recon_token_count": 0
+            }
+          ]
+        },
+        {
+          "mean_rouge_l": 0.0,
+          "mean_rouge_1": 0.0,
+          "mean_rouge_2": 0.0,
+          "mean_token_accuracy": 0.0,
+          "mean_correct_tokens": 0.0,
+          "mean_f1_score": 0.0,
+          "sentence_count": 1,
+          "total_correct_tokens": 0,
+          "sentence_details": [
+            {
+              "original": "We're dancing the night away.",
+              "reconstructed": "",
+              "rouge_l": 0.0,
+              "rouge_1": 0.0,
+              "rouge_2": 0.0,
+              "token_accuracy": 0.0,
+              "correct_tokens": 0,
+              "f1_score": 0.0,
+              "total_tokens": 7,
+              "recon_token_count": 0
+            }
+          ]
+        },
+        {
+          "mean_rouge_l": 0.0,
+          "mean_rouge_1": 0.0,
+          "mean_rouge_2": 0.0,
+          "mean_token_accuracy": 0.0,
+          "mean_correct_tokens": 0.0,
+          "mean_f1_score": 0.0,
+          "sentence_count": 1,
+          "total_correct_tokens": 0,
+          "sentence_details": [
+            {
+              "original": "Herman hammered the metal flat.",
+              "reconstructed": "",
+              "rouge_l": 0.0,
+              "rouge_1": 0.0,
+              "rouge_2": 0.0,
+              "token_accuracy": 0.0,
+              "correct_tokens": 0,
+              "f1_score": 0.0,
+              "total_tokens": 6,
+              "recon_token_count": 0
+            }
+          ]
+        }
+      ]
+    },
+    "mean_metrics": {
+      "rouge_l": 0.0,
+      "rouge_1": 0.0,
+      "rouge_2": 0.0,
+      "token_accuracy": 0.0,
+      "correct_tokens": 0.0,
+      "f1_score": 0.0
+    },
+    "details": [
+      {
+        "batch_size": "1",
+        "mean_rouge_l": 0.0,
+        "mean_rouge_1": 0.0,
+        "mean_rouge_2": 0.0,
+        "mean_token_accuracy": 0.0,
+        "mean_correct_tokens": 0.0,
+        "mean_f1_score": 0.0,
+        "list_details": [
+          {
+            "list_index": 0,
+            "rouge_l": 0.0,
+            "rouge_1": 0.0,
+            "rouge_2": 0.0,
+            "token_accuracy": 0.0,
+            "correct_tokens": 0,
+            "f1_score": 0.0,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "I'll fix you a drink.",
+                "reconstructed": "",
+                "rouge_l": 0.0,
+                "rouge_1": 0.0,
+                "rouge_2": 0.0,
+                "token_accuracy": 0.0,
+                "correct_tokens": 0,
+                "f1_score": 0.0,
+                "total_tokens": 7,
+                "recon_token_count": 0
+              }
+            ]
+          },
+          {
+            "list_index": 1,
+            "rouge_l": 0.0,
+            "rouge_1": 0.0,
+            "rouge_2": 0.0,
+            "token_accuracy": 0.0,
+            "correct_tokens": 0,
+            "f1_score": 0.0,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "Fred watered the plants flat.",
+                "reconstructed": "",
+                "rouge_l": 0.0,
+                "rouge_1": 0.0,
+                "rouge_2": 0.0,
+                "token_accuracy": 0.0,
+                "correct_tokens": 0,
+                "f1_score": 0.0,
+                "total_tokens": 6,
+                "recon_token_count": 0
+              }
+            ]
+          },
+          {
+            "list_index": 2,
+            "rouge_l": 0.0,
+            "rouge_1": 0.0,
+            "rouge_2": 0.0,
+            "token_accuracy": 0.0,
+            "correct_tokens": 0,
+            "f1_score": 0.0,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "Bill coughed his way out of the restaurant.",
+                "reconstructed": "",
+                "rouge_l": 0.0,
+                "rouge_1": 0.0,
+                "rouge_2": 0.0,
+                "token_accuracy": 0.0,
+                "correct_tokens": 0,
+                "f1_score": 0.0,
+                "total_tokens": 9,
+                "recon_token_count": 0
+              }
+            ]
+          },
+          {
+            "list_index": 3,
+            "rouge_l": 0.0,
+            "rouge_1": 0.0,
+            "rouge_2": 0.0,
+            "token_accuracy": 0.0,
+            "correct_tokens": 0,
+            "f1_score": 0.0,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "We're dancing the night away.",
+                "reconstructed": "",
+                "rouge_l": 0.0,
+                "rouge_1": 0.0,
+                "rouge_2": 0.0,
+                "token_accuracy": 0.0,
+                "correct_tokens": 0,
+                "f1_score": 0.0,
+                "total_tokens": 7,
+                "recon_token_count": 0
+              }
+            ]
+          },
+          {
+            "list_index": 4,
+            "rouge_l": 0.0,
+            "rouge_1": 0.0,
+            "rouge_2": 0.0,
+            "token_accuracy": 0.0,
+            "correct_tokens": 0,
+            "f1_score": 0.0,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "Herman hammered the metal flat.",
+                "reconstructed": "",
+                "rouge_l": 0.0,
+                "rouge_1": 0.0,
+                "rouge_2": 0.0,
+                "token_accuracy": 0.0,
+                "correct_tokens": 0,
+                "f1_score": 0.0,
+                "total_tokens": 6,
+                "recon_token_count": 0
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "Opt-DP-0.01": {
+    "batch_metrics": {
+      "1": {
+        "rouge_l": 0.9555555555555555,
+        "rouge_1": 0.9555555555555555,
+        "rouge_2": 0.95,
+        "token_accuracy": 0.9555555555555555,
+        "correct_tokens": 6.6,
+        "f1_score": 0.9596153846153846
+      }
+    },
+    "list_metrics": {
+      "1": [
+        {
+          "mean_rouge_l": 1.0,
+          "mean_rouge_1": 1.0,
+          "mean_rouge_2": 1.0,
+          "mean_token_accuracy": 1.0,
+          "mean_correct_tokens": 7.0,
+          "mean_f1_score": 1.0,
+          "sentence_count": 1,
+          "total_correct_tokens": 7,
+          "sentence_details": [
+            {
+              "original": "I'll fix you a drink.",
+              "reconstructed": "I'll fix you a drink.",
+              "rouge_l": 1.0,
+              "rouge_1": 1.0,
+              "rouge_2": 1.0,
+              "token_accuracy": 1.0,
+              "correct_tokens": 7,
+              "f1_score": 1.0,
+              "total_tokens": 7,
+              "recon_token_count": 7
+            }
+          ]
+        },
+        {
+          "mean_rouge_l": 1.0,
+          "mean_rouge_1": 1.0,
+          "mean_rouge_2": 1.0,
+          "mean_token_accuracy": 1.0,
+          "mean_correct_tokens": 6.0,
+          "mean_f1_score": 1.0,
+          "sentence_count": 1,
+          "total_correct_tokens": 6,
+          "sentence_details": [
+            {
+              "original": "Fred watered the plants flat.",
+              "reconstructed": "Fred watered the plants flat.",
+              "rouge_l": 1.0,
+              "rouge_1": 1.0,
+              "rouge_2": 1.0,
+              "token_accuracy": 1.0,
+              "correct_tokens": 6,
+              "f1_score": 1.0,
+              "total_tokens": 6,
+              "recon_token_count": 6
+            }
+          ]
+        },
+        {
+          "mean_rouge_l": 0.7777777777777778,
+          "mean_rouge_1": 0.7777777777777778,
+          "mean_rouge_2": 0.75,
+          "mean_token_accuracy": 0.7777777777777778,
+          "mean_correct_tokens": 7.0,
+          "mean_f1_score": 0.875,
+          "sentence_count": 1,
+          "total_correct_tokens": 7,
+          "sentence_details": [
+            {
+              "original": "Bill coughed his way out of the restaurant.",
+              "reconstructed": "Bill coughed his way out of the",
+              "rouge_l": 0.7777777777777778,
+              "rouge_1": 0.7777777777777778,
+              "rouge_2": 0.75,
+              "token_accuracy": 0.7777777777777778,
+              "correct_tokens": 7,
+              "f1_score": 0.875,
+              "total_tokens": 9,
+              "recon_token_count": 7
+            }
+          ]
+        },
+        {
+          "mean_rouge_l": 1.0,
+          "mean_rouge_1": 1.0,
+          "mean_rouge_2": 1.0,
+          "mean_token_accuracy": 1.0,
+          "mean_correct_tokens": 7.0,
+          "mean_f1_score": 1.0,
+          "sentence_count": 1,
+          "total_correct_tokens": 7,
+          "sentence_details": [
+            {
+              "original": "We're dancing the night away.",
+              "reconstructed": "We're dancing the night away.",
+              "rouge_l": 1.0,
+              "rouge_1": 1.0,
+              "rouge_2": 1.0,
+              "token_accuracy": 1.0,
+              "correct_tokens": 7,
+              "f1_score": 1.0,
+              "total_tokens": 7,
+              "recon_token_count": 7
+            }
+          ]
+        },
+        {
+          "mean_rouge_l": 1.0,
+          "mean_rouge_1": 1.0,
+          "mean_rouge_2": 1.0,
+          "mean_token_accuracy": 1.0,
+          "mean_correct_tokens": 6.0,
+          "mean_f1_score": 0.9230769230769231,
+          "sentence_count": 1,
+          "total_correct_tokens": 6,
+          "sentence_details": [
+            {
+              "original": "Herman hammered the metal flat.",
+              "reconstructed": "Herman hammered the metal flat..",
+              "rouge_l": 1.0,
+              "rouge_1": 1.0,
+              "rouge_2": 1.0,
+              "token_accuracy": 1.0,
+              "correct_tokens": 6,
+              "f1_score": 0.9230769230769231,
+              "total_tokens": 6,
+              "recon_token_count": 7
+            }
+          ]
+        }
+      ]
+    },
+    "mean_metrics": {
+      "rouge_l": 0.9555555555555555,
+      "rouge_1": 0.9555555555555555,
+      "rouge_2": 0.95,
+      "token_accuracy": 0.9555555555555555,
+      "correct_tokens": 6.6,
+      "f1_score": 0.9596153846153846
+    },
+    "details": [
+      {
+        "batch_size": "1",
+        "mean_rouge_l": 0.9555555555555555,
+        "mean_rouge_1": 0.9555555555555555,
+        "mean_rouge_2": 0.95,
+        "mean_token_accuracy": 0.9555555555555555,
+        "mean_correct_tokens": 6.6,
+        "mean_f1_score": 0.9596153846153846,
+        "list_details": [
+          {
+            "list_index": 0,
+            "rouge_l": 1.0,
+            "rouge_1": 1.0,
+            "rouge_2": 1.0,
+            "token_accuracy": 1.0,
+            "correct_tokens": 7,
+            "f1_score": 1.0,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "I'll fix you a drink.",
+                "reconstructed": "I'll fix you a drink.",
+                "rouge_l": 1.0,
+                "rouge_1": 1.0,
+                "rouge_2": 1.0,
+                "token_accuracy": 1.0,
+                "correct_tokens": 7,
+                "f1_score": 1.0,
+                "total_tokens": 7,
+                "recon_token_count": 7
+              }
+            ]
+          },
+          {
+            "list_index": 1,
+            "rouge_l": 1.0,
+            "rouge_1": 1.0,
+            "rouge_2": 1.0,
+            "token_accuracy": 1.0,
+            "correct_tokens": 6,
+            "f1_score": 1.0,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "Fred watered the plants flat.",
+                "reconstructed": "Fred watered the plants flat.",
+                "rouge_l": 1.0,
+                "rouge_1": 1.0,
+                "rouge_2": 1.0,
+                "token_accuracy": 1.0,
+                "correct_tokens": 6,
+                "f1_score": 1.0,
+                "total_tokens": 6,
+                "recon_token_count": 6
+              }
+            ]
+          },
+          {
+            "list_index": 2,
+            "rouge_l": 0.7777777777777778,
+            "rouge_1": 0.7777777777777778,
+            "rouge_2": 0.75,
+            "token_accuracy": 0.7777777777777778,
+            "correct_tokens": 7,
+            "f1_score": 0.875,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "Bill coughed his way out of the restaurant.",
+                "reconstructed": "Bill coughed his way out of the",
+                "rouge_l": 0.7777777777777778,
+                "rouge_1": 0.7777777777777778,
+                "rouge_2": 0.75,
+                "token_accuracy": 0.7777777777777778,
+                "correct_tokens": 7,
+                "f1_score": 0.875,
+                "total_tokens": 9,
+                "recon_token_count": 7
+              }
+            ]
+          },
+          {
+            "list_index": 3,
+            "rouge_l": 1.0,
+            "rouge_1": 1.0,
+            "rouge_2": 1.0,
+            "token_accuracy": 1.0,
+            "correct_tokens": 7,
+            "f1_score": 1.0,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "We're dancing the night away.",
+                "reconstructed": "We're dancing the night away.",
+                "rouge_l": 1.0,
+                "rouge_1": 1.0,
+                "rouge_2": 1.0,
+                "token_accuracy": 1.0,
+                "correct_tokens": 7,
+                "f1_score": 1.0,
+                "total_tokens": 7,
+                "recon_token_count": 7
+              }
+            ]
+          },
+          {
+            "list_index": 4,
+            "rouge_l": 1.0,
+            "rouge_1": 1.0,
+            "rouge_2": 1.0,
+            "token_accuracy": 1.0,
+            "correct_tokens": 6,
+            "f1_score": 0.9230769230769231,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "Herman hammered the metal flat.",
+                "reconstructed": "Herman hammered the metal flat..",
+                "rouge_l": 1.0,
+                "rouge_1": 1.0,
+                "rouge_2": 1.0,
+                "token_accuracy": 1.0,
+                "correct_tokens": 6,
+                "f1_score": 0.9230769230769231,
+                "total_tokens": 6,
+                "recon_token_count": 7
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "Naive-GP-0.01": {
+    "batch_metrics": {
+      "1": {
+        "rouge_l": 1.0,
+        "rouge_1": 1.0,
+        "rouge_2": 1.0,
+        "token_accuracy": 1.0,
+        "correct_tokens": 7.0,
+        "f1_score": 1.0
+      }
+    },
+    "list_metrics": {
+      "1": [
+        {
+          "mean_rouge_l": 1.0,
+          "mean_rouge_1": 1.0,
+          "mean_rouge_2": 1.0,
+          "mean_token_accuracy": 1.0,
+          "mean_correct_tokens": 7.0,
+          "mean_f1_score": 1.0,
+          "sentence_count": 1,
+          "total_correct_tokens": 7,
+          "sentence_details": [
+            {
+              "original": "I'll fix you a drink.",
+              "reconstructed": "I'll fix you a drink.",
+              "rouge_l": 1.0,
+              "rouge_1": 1.0,
+              "rouge_2": 1.0,
+              "token_accuracy": 1.0,
+              "correct_tokens": 7,
+              "f1_score": 1.0,
+              "total_tokens": 7,
+              "recon_token_count": 7
+            }
+          ]
+        },
+        {
+          "mean_rouge_l": 1.0,
+          "mean_rouge_1": 1.0,
+          "mean_rouge_2": 1.0,
+          "mean_token_accuracy": 1.0,
+          "mean_correct_tokens": 6.0,
+          "mean_f1_score": 1.0,
+          "sentence_count": 1,
+          "total_correct_tokens": 6,
+          "sentence_details": [
+            {
+              "original": "Fred watered the plants flat.",
+              "reconstructed": "Fred watered the plants flat.",
+              "rouge_l": 1.0,
+              "rouge_1": 1.0,
+              "rouge_2": 1.0,
+              "token_accuracy": 1.0,
+              "correct_tokens": 6,
+              "f1_score": 1.0,
+              "total_tokens": 6,
+              "recon_token_count": 6
+            }
+          ]
+        },
+        {
+          "mean_rouge_l": 1.0,
+          "mean_rouge_1": 1.0,
+          "mean_rouge_2": 1.0,
+          "mean_token_accuracy": 1.0,
+          "mean_correct_tokens": 9.0,
+          "mean_f1_score": 1.0,
+          "sentence_count": 1,
+          "total_correct_tokens": 9,
+          "sentence_details": [
+            {
+              "original": "Bill coughed his way out of the restaurant.",
+              "reconstructed": "Bill coughed his way out of the restaurant.",
+              "rouge_l": 1.0,
+              "rouge_1": 1.0,
+              "rouge_2": 1.0,
+              "token_accuracy": 1.0,
+              "correct_tokens": 9,
+              "f1_score": 1.0,
+              "total_tokens": 9,
+              "recon_token_count": 9
+            }
+          ]
+        },
+        {
+          "mean_rouge_l": 1.0,
+          "mean_rouge_1": 1.0,
+          "mean_rouge_2": 1.0,
+          "mean_token_accuracy": 1.0,
+          "mean_correct_tokens": 7.0,
+          "mean_f1_score": 1.0,
+          "sentence_count": 1,
+          "total_correct_tokens": 7,
+          "sentence_details": [
+            {
+              "original": "We're dancing the night away.",
+              "reconstructed": "We're dancing the night away.",
+              "rouge_l": 1.0,
+              "rouge_1": 1.0,
+              "rouge_2": 1.0,
+              "token_accuracy": 1.0,
+              "correct_tokens": 7,
+              "f1_score": 1.0,
+              "total_tokens": 7,
+              "recon_token_count": 7
+            }
+          ]
+        },
+        {
+          "mean_rouge_l": 1.0,
+          "mean_rouge_1": 1.0,
+          "mean_rouge_2": 1.0,
+          "mean_token_accuracy": 1.0,
+          "mean_correct_tokens": 6.0,
+          "mean_f1_score": 1.0,
+          "sentence_count": 1,
+          "total_correct_tokens": 6,
+          "sentence_details": [
+            {
+              "original": "Herman hammered the metal flat.",
+              "reconstructed": "Herman hammered the metal flat.",
+              "rouge_l": 1.0,
+              "rouge_1": 1.0,
+              "rouge_2": 1.0,
+              "token_accuracy": 1.0,
+              "correct_tokens": 6,
+              "f1_score": 1.0,
+              "total_tokens": 6,
+              "recon_token_count": 6
+            }
+          ]
+        }
+      ]
+    },
+    "mean_metrics": {
+      "rouge_l": 1.0,
+      "rouge_1": 1.0,
+      "rouge_2": 1.0,
+      "token_accuracy": 1.0,
+      "correct_tokens": 7.0,
+      "f1_score": 1.0
+    },
+    "details": [
+      {
+        "batch_size": "1",
+        "mean_rouge_l": 1.0,
+        "mean_rouge_1": 1.0,
+        "mean_rouge_2": 1.0,
+        "mean_token_accuracy": 1.0,
+        "mean_correct_tokens": 7.0,
+        "mean_f1_score": 1.0,
+        "list_details": [
+          {
+            "list_index": 0,
+            "rouge_l": 1.0,
+            "rouge_1": 1.0,
+            "rouge_2": 1.0,
+            "token_accuracy": 1.0,
+            "correct_tokens": 7,
+            "f1_score": 1.0,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "I'll fix you a drink.",
+                "reconstructed": "I'll fix you a drink.",
+                "rouge_l": 1.0,
+                "rouge_1": 1.0,
+                "rouge_2": 1.0,
+                "token_accuracy": 1.0,
+                "correct_tokens": 7,
+                "f1_score": 1.0,
+                "total_tokens": 7,
+                "recon_token_count": 7
+              }
+            ]
+          },
+          {
+            "list_index": 1,
+            "rouge_l": 1.0,
+            "rouge_1": 1.0,
+            "rouge_2": 1.0,
+            "token_accuracy": 1.0,
+            "correct_tokens": 6,
+            "f1_score": 1.0,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "Fred watered the plants flat.",
+                "reconstructed": "Fred watered the plants flat.",
+                "rouge_l": 1.0,
+                "rouge_1": 1.0,
+                "rouge_2": 1.0,
+                "token_accuracy": 1.0,
+                "correct_tokens": 6,
+                "f1_score": 1.0,
+                "total_tokens": 6,
+                "recon_token_count": 6
+              }
+            ]
+          },
+          {
+            "list_index": 2,
+            "rouge_l": 1.0,
+            "rouge_1": 1.0,
+            "rouge_2": 1.0,
+            "token_accuracy": 1.0,
+            "correct_tokens": 9,
+            "f1_score": 1.0,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "Bill coughed his way out of the restaurant.",
+                "reconstructed": "Bill coughed his way out of the restaurant.",
+                "rouge_l": 1.0,
+                "rouge_1": 1.0,
+                "rouge_2": 1.0,
+                "token_accuracy": 1.0,
+                "correct_tokens": 9,
+                "f1_score": 1.0,
+                "total_tokens": 9,
+                "recon_token_count": 9
+              }
+            ]
+          },
+          {
+            "list_index": 3,
+            "rouge_l": 1.0,
+            "rouge_1": 1.0,
+            "rouge_2": 1.0,
+            "token_accuracy": 1.0,
+            "correct_tokens": 7,
+            "f1_score": 1.0,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "We're dancing the night away.",
+                "reconstructed": "We're dancing the night away.",
+                "rouge_l": 1.0,
+                "rouge_1": 1.0,
+                "rouge_2": 1.0,
+                "token_accuracy": 1.0,
+                "correct_tokens": 7,
+                "f1_score": 1.0,
+                "total_tokens": 7,
+                "recon_token_count": 7
+              }
+            ]
+          },
+          {
+            "list_index": 4,
+            "rouge_l": 1.0,
+            "rouge_1": 1.0,
+            "rouge_2": 1.0,
+            "token_accuracy": 1.0,
+            "correct_tokens": 6,
+            "f1_score": 1.0,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "Herman hammered the metal flat.",
+                "reconstructed": "Herman hammered the metal flat.",
+                "rouge_l": 1.0,
+                "rouge_1": 1.0,
+                "rouge_2": 1.0,
+                "token_accuracy": 1.0,
+                "correct_tokens": 6,
+                "f1_score": 1.0,
+                "total_tokens": 6,
+                "recon_token_count": 6
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "Naive-GP-0.5": {
+    "batch_metrics": {
+      "1": {
+        "rouge_l": 0.9111111111111111,
+        "rouge_1": 0.9111111111111111,
+        "rouge_2": 0.9,
+        "token_accuracy": 0.9111111111111111,
+        "correct_tokens": 6.2,
+        "f1_score": 0.9428571428571428
+      }
+    },
+    "list_metrics": {
+      "1": [
+        {
+          "mean_rouge_l": 1.0,
+          "mean_rouge_1": 1.0,
+          "mean_rouge_2": 1.0,
+          "mean_token_accuracy": 1.0,
+          "mean_correct_tokens": 7.0,
+          "mean_f1_score": 1.0,
+          "sentence_count": 1,
+          "total_correct_tokens": 7,
+          "sentence_details": [
+            {
+              "original": "I'll fix you a drink.",
+              "reconstructed": "I'll fix you a drink.",
+              "rouge_l": 1.0,
+              "rouge_1": 1.0,
+              "rouge_2": 1.0,
+              "token_accuracy": 1.0,
+              "correct_tokens": 7,
+              "f1_score": 1.0,
+              "total_tokens": 7,
+              "recon_token_count": 7
+            }
+          ]
+        },
+        {
+          "mean_rouge_l": 1.0,
+          "mean_rouge_1": 1.0,
+          "mean_rouge_2": 1.0,
+          "mean_token_accuracy": 1.0,
+          "mean_correct_tokens": 6.0,
+          "mean_f1_score": 1.0,
+          "sentence_count": 1,
+          "total_correct_tokens": 6,
+          "sentence_details": [
+            {
+              "original": "Fred watered the plants flat.",
+              "reconstructed": "Fred watered the plants flat.",
+              "rouge_l": 1.0,
+              "rouge_1": 1.0,
+              "rouge_2": 1.0,
+              "token_accuracy": 1.0,
+              "correct_tokens": 6,
+              "f1_score": 1.0,
+              "total_tokens": 6,
+              "recon_token_count": 6
+            }
+          ]
+        },
+        {
+          "mean_rouge_l": 0.5555555555555556,
+          "mean_rouge_1": 0.5555555555555556,
+          "mean_rouge_2": 0.5,
+          "mean_token_accuracy": 0.5555555555555556,
+          "mean_correct_tokens": 5.0,
+          "mean_f1_score": 0.7142857142857143,
+          "sentence_count": 1,
+          "total_correct_tokens": 5,
+          "sentence_details": [
+            {
+              "original": "Bill coughed his way out of the restaurant.",
+              "reconstructed": "Bill coughed his way out",
+              "rouge_l": 0.5555555555555556,
+              "rouge_1": 0.5555555555555556,
+              "rouge_2": 0.5,
+              "token_accuracy": 0.5555555555555556,
+              "correct_tokens": 5,
+              "f1_score": 0.7142857142857143,
+              "total_tokens": 9,
+              "recon_token_count": 5
+            }
+          ]
+        },
+        {
+          "mean_rouge_l": 1.0,
+          "mean_rouge_1": 1.0,
+          "mean_rouge_2": 1.0,
+          "mean_token_accuracy": 1.0,
+          "mean_correct_tokens": 7.0,
+          "mean_f1_score": 1.0,
+          "sentence_count": 1,
+          "total_correct_tokens": 7,
+          "sentence_details": [
+            {
+              "original": "We're dancing the night away.",
+              "reconstructed": "We're dancing the night away.",
+              "rouge_l": 1.0,
+              "rouge_1": 1.0,
+              "rouge_2": 1.0,
+              "token_accuracy": 1.0,
+              "correct_tokens": 7,
+              "f1_score": 1.0,
+              "total_tokens": 7,
+              "recon_token_count": 7
+            }
+          ]
+        },
+        {
+          "mean_rouge_l": 1.0,
+          "mean_rouge_1": 1.0,
+          "mean_rouge_2": 1.0,
+          "mean_token_accuracy": 1.0,
+          "mean_correct_tokens": 6.0,
+          "mean_f1_score": 1.0,
+          "sentence_count": 1,
+          "total_correct_tokens": 6,
+          "sentence_details": [
+            {
+              "original": "Herman hammered the metal flat.",
+              "reconstructed": "Herman hammered the metal flat.",
+              "rouge_l": 1.0,
+              "rouge_1": 1.0,
+              "rouge_2": 1.0,
+              "token_accuracy": 1.0,
+              "correct_tokens": 6,
+              "f1_score": 1.0,
+              "total_tokens": 6,
+              "recon_token_count": 6
+            }
+          ]
+        }
+      ]
+    },
+    "mean_metrics": {
+      "rouge_l": 0.9111111111111111,
+      "rouge_1": 0.9111111111111111,
+      "rouge_2": 0.9,
+      "token_accuracy": 0.9111111111111111,
+      "correct_tokens": 6.2,
+      "f1_score": 0.9428571428571428
+    },
+    "details": [
+      {
+        "batch_size": "1",
+        "mean_rouge_l": 0.9111111111111111,
+        "mean_rouge_1": 0.9111111111111111,
+        "mean_rouge_2": 0.9,
+        "mean_token_accuracy": 0.9111111111111111,
+        "mean_correct_tokens": 6.2,
+        "mean_f1_score": 0.9428571428571428,
+        "list_details": [
+          {
+            "list_index": 0,
+            "rouge_l": 1.0,
+            "rouge_1": 1.0,
+            "rouge_2": 1.0,
+            "token_accuracy": 1.0,
+            "correct_tokens": 7,
+            "f1_score": 1.0,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "I'll fix you a drink.",
+                "reconstructed": "I'll fix you a drink.",
+                "rouge_l": 1.0,
+                "rouge_1": 1.0,
+                "rouge_2": 1.0,
+                "token_accuracy": 1.0,
+                "correct_tokens": 7,
+                "f1_score": 1.0,
+                "total_tokens": 7,
+                "recon_token_count": 7
+              }
+            ]
+          },
+          {
+            "list_index": 1,
+            "rouge_l": 1.0,
+            "rouge_1": 1.0,
+            "rouge_2": 1.0,
+            "token_accuracy": 1.0,
+            "correct_tokens": 6,
+            "f1_score": 1.0,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "Fred watered the plants flat.",
+                "reconstructed": "Fred watered the plants flat.",
+                "rouge_l": 1.0,
+                "rouge_1": 1.0,
+                "rouge_2": 1.0,
+                "token_accuracy": 1.0,
+                "correct_tokens": 6,
+                "f1_score": 1.0,
+                "total_tokens": 6,
+                "recon_token_count": 6
+              }
+            ]
+          },
+          {
+            "list_index": 2,
+            "rouge_l": 0.5555555555555556,
+            "rouge_1": 0.5555555555555556,
+            "rouge_2": 0.5,
+            "token_accuracy": 0.5555555555555556,
+            "correct_tokens": 5,
+            "f1_score": 0.7142857142857143,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "Bill coughed his way out of the restaurant.",
+                "reconstructed": "Bill coughed his way out",
+                "rouge_l": 0.5555555555555556,
+                "rouge_1": 0.5555555555555556,
+                "rouge_2": 0.5,
+                "token_accuracy": 0.5555555555555556,
+                "correct_tokens": 5,
+                "f1_score": 0.7142857142857143,
+                "total_tokens": 9,
+                "recon_token_count": 5
+              }
+            ]
+          },
+          {
+            "list_index": 3,
+            "rouge_l": 1.0,
+            "rouge_1": 1.0,
+            "rouge_2": 1.0,
+            "token_accuracy": 1.0,
+            "correct_tokens": 7,
+            "f1_score": 1.0,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "We're dancing the night away.",
+                "reconstructed": "We're dancing the night away.",
+                "rouge_l": 1.0,
+                "rouge_1": 1.0,
+                "rouge_2": 1.0,
+                "token_accuracy": 1.0,
+                "correct_tokens": 7,
+                "f1_score": 1.0,
+                "total_tokens": 7,
+                "recon_token_count": 7
+              }
+            ]
+          },
+          {
+            "list_index": 4,
+            "rouge_l": 1.0,
+            "rouge_1": 1.0,
+            "rouge_2": 1.0,
+            "token_accuracy": 1.0,
+            "correct_tokens": 6,
+            "f1_score": 1.0,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "Herman hammered the metal flat.",
+                "reconstructed": "Herman hammered the metal flat.",
+                "rouge_l": 1.0,
+                "rouge_1": 1.0,
+                "rouge_2": 1.0,
+                "token_accuracy": 1.0,
+                "correct_tokens": 6,
+                "f1_score": 1.0,
+                "total_tokens": 6,
+                "recon_token_count": 6
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "Naive-GP-0.7": {
+    "batch_metrics": {
+      "1": {
+        "rouge_l": 0.3412698412698413,
+        "rouge_1": 0.3412698412698413,
+        "rouge_2": 0.23333333333333334,
+        "token_accuracy": 0.3412698412698413,
+        "correct_tokens": 2.2,
+        "f1_score": 0.46070707070707073
+      }
+    },
+    "list_metrics": {
+      "1": [
+        {
+          "mean_rouge_l": 0.14285714285714285,
+          "mean_rouge_1": 0.14285714285714285,
+          "mean_rouge_2": 0.0,
+          "mean_token_accuracy": 0.14285714285714285,
+          "mean_correct_tokens": 1.0,
+          "mean_f1_score": 0.25,
+          "sentence_count": 1,
+          "total_correct_tokens": 1,
+          "sentence_details": [
+            {
+              "original": "I'll fix you a drink.",
+              "reconstructed": "I",
+              "rouge_l": 0.14285714285714285,
+              "rouge_1": 0.14285714285714285,
+              "rouge_2": 0.0,
+              "token_accuracy": 0.14285714285714285,
+              "correct_tokens": 1,
+              "f1_score": 0.25,
+              "total_tokens": 7,
+              "recon_token_count": 1
+            }
+          ]
+        },
+        {
+          "mean_rouge_l": 0.8333333333333334,
+          "mean_rouge_1": 0.8333333333333334,
+          "mean_rouge_2": 0.8,
+          "mean_token_accuracy": 0.8333333333333334,
+          "mean_correct_tokens": 5.0,
+          "mean_f1_score": 0.9090909090909091,
+          "sentence_count": 1,
+          "total_correct_tokens": 5,
+          "sentence_details": [
+            {
+              "original": "Fred watered the plants flat.",
+              "reconstructed": "Fred watered the plants flat",
+              "rouge_l": 0.8333333333333334,
+              "rouge_1": 0.8333333333333334,
+              "rouge_2": 0.8,
+              "token_accuracy": 0.8333333333333334,
+              "correct_tokens": 5,
+              "f1_score": 0.9090909090909091,
+              "total_tokens": 6,
+              "recon_token_count": 5
+            }
+          ]
+        },
+        {
+          "mean_rouge_l": 0.1111111111111111,
+          "mean_rouge_1": 0.1111111111111111,
+          "mean_rouge_2": 0.0,
+          "mean_token_accuracy": 0.1111111111111111,
+          "mean_correct_tokens": 1.0,
+          "mean_f1_score": 0.2,
+          "sentence_count": 1,
+          "total_correct_tokens": 1,
+          "sentence_details": [
+            {
+              "original": "Bill coughed his way out of the restaurant.",
+              "reconstructed": " Bill",
+              "rouge_l": 0.1111111111111111,
+              "rouge_1": 0.1111111111111111,
+              "rouge_2": 0.0,
+              "token_accuracy": 0.1111111111111111,
+              "correct_tokens": 1,
+              "f1_score": 0.2,
+              "total_tokens": 9,
+              "recon_token_count": 1
+            }
+          ]
+        },
+        {
+          "mean_rouge_l": 0.2857142857142857,
+          "mean_rouge_1": 0.2857142857142857,
+          "mean_rouge_2": 0.16666666666666666,
+          "mean_token_accuracy": 0.2857142857142857,
+          "mean_correct_tokens": 2.0,
+          "mean_f1_score": 0.4444444444444444,
+          "sentence_count": 1,
+          "total_correct_tokens": 2,
+          "sentence_details": [
+            {
+              "original": "We're dancing the night away.",
+              "reconstructed": "We're",
+              "rouge_l": 0.2857142857142857,
+              "rouge_1": 0.2857142857142857,
+              "rouge_2": 0.16666666666666666,
+              "token_accuracy": 0.2857142857142857,
+              "correct_tokens": 2,
+              "f1_score": 0.4444444444444444,
+              "total_tokens": 7,
+              "recon_token_count": 2
+            }
+          ]
+        },
+        {
+          "mean_rouge_l": 0.3333333333333333,
+          "mean_rouge_1": 0.3333333333333333,
+          "mean_rouge_2": 0.2,
+          "mean_token_accuracy": 0.3333333333333333,
+          "mean_correct_tokens": 2.0,
+          "mean_f1_score": 0.5,
+          "sentence_count": 1,
+          "total_correct_tokens": 2,
+          "sentence_details": [
+            {
+              "original": "Herman hammered the metal flat.",
+              "reconstructed": "Herman hammered",
+              "rouge_l": 0.3333333333333333,
+              "rouge_1": 0.3333333333333333,
+              "rouge_2": 0.2,
+              "token_accuracy": 0.3333333333333333,
+              "correct_tokens": 2,
+              "f1_score": 0.5,
+              "total_tokens": 6,
+              "recon_token_count": 2
+            }
+          ]
+        }
+      ]
+    },
+    "mean_metrics": {
+      "rouge_l": 0.3412698412698413,
+      "rouge_1": 0.3412698412698413,
+      "rouge_2": 0.23333333333333334,
+      "token_accuracy": 0.3412698412698413,
+      "correct_tokens": 2.2,
+      "f1_score": 0.46070707070707073
+    },
+    "details": [
+      {
+        "batch_size": "1",
+        "mean_rouge_l": 0.3412698412698413,
+        "mean_rouge_1": 0.3412698412698413,
+        "mean_rouge_2": 0.23333333333333334,
+        "mean_token_accuracy": 0.3412698412698413,
+        "mean_correct_tokens": 2.2,
+        "mean_f1_score": 0.46070707070707073,
+        "list_details": [
+          {
+            "list_index": 0,
+            "rouge_l": 0.14285714285714285,
+            "rouge_1": 0.14285714285714285,
+            "rouge_2": 0.0,
+            "token_accuracy": 0.14285714285714285,
+            "correct_tokens": 1,
+            "f1_score": 0.25,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "I'll fix you a drink.",
+                "reconstructed": "I",
+                "rouge_l": 0.14285714285714285,
+                "rouge_1": 0.14285714285714285,
+                "rouge_2": 0.0,
+                "token_accuracy": 0.14285714285714285,
+                "correct_tokens": 1,
+                "f1_score": 0.25,
+                "total_tokens": 7,
+                "recon_token_count": 1
+              }
+            ]
+          },
+          {
+            "list_index": 1,
+            "rouge_l": 0.8333333333333334,
+            "rouge_1": 0.8333333333333334,
+            "rouge_2": 0.8,
+            "token_accuracy": 0.8333333333333334,
+            "correct_tokens": 5,
+            "f1_score": 0.9090909090909091,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "Fred watered the plants flat.",
+                "reconstructed": "Fred watered the plants flat",
+                "rouge_l": 0.8333333333333334,
+                "rouge_1": 0.8333333333333334,
+                "rouge_2": 0.8,
+                "token_accuracy": 0.8333333333333334,
+                "correct_tokens": 5,
+                "f1_score": 0.9090909090909091,
+                "total_tokens": 6,
+                "recon_token_count": 5
+              }
+            ]
+          },
+          {
+            "list_index": 2,
+            "rouge_l": 0.1111111111111111,
+            "rouge_1": 0.1111111111111111,
+            "rouge_2": 0.0,
+            "token_accuracy": 0.1111111111111111,
+            "correct_tokens": 1,
+            "f1_score": 0.2,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "Bill coughed his way out of the restaurant.",
+                "reconstructed": " Bill",
+                "rouge_l": 0.1111111111111111,
+                "rouge_1": 0.1111111111111111,
+                "rouge_2": 0.0,
+                "token_accuracy": 0.1111111111111111,
+                "correct_tokens": 1,
+                "f1_score": 0.2,
+                "total_tokens": 9,
+                "recon_token_count": 1
+              }
+            ]
+          },
+          {
+            "list_index": 3,
+            "rouge_l": 0.2857142857142857,
+            "rouge_1": 0.2857142857142857,
+            "rouge_2": 0.16666666666666666,
+            "token_accuracy": 0.2857142857142857,
+            "correct_tokens": 2,
+            "f1_score": 0.4444444444444444,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "We're dancing the night away.",
+                "reconstructed": "We're",
+                "rouge_l": 0.2857142857142857,
+                "rouge_1": 0.2857142857142857,
+                "rouge_2": 0.16666666666666666,
+                "token_accuracy": 0.2857142857142857,
+                "correct_tokens": 2,
+                "f1_score": 0.4444444444444444,
+                "total_tokens": 7,
+                "recon_token_count": 2
+              }
+            ]
+          },
+          {
+            "list_index": 4,
+            "rouge_l": 0.3333333333333333,
+            "rouge_1": 0.3333333333333333,
+            "rouge_2": 0.2,
+            "token_accuracy": 0.3333333333333333,
+            "correct_tokens": 2,
+            "f1_score": 0.5,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "Herman hammered the metal flat.",
+                "reconstructed": "Herman hammered",
+                "rouge_l": 0.3333333333333333,
+                "rouge_1": 0.3333333333333333,
+                "rouge_2": 0.2,
+                "token_accuracy": 0.3333333333333333,
+                "correct_tokens": 2,
+                "f1_score": 0.5,
+                "total_tokens": 6,
+                "recon_token_count": 2
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "Opt-GP-0.01": {
+    "batch_metrics": {
+      "1": {
+        "rouge_l": 1.0,
+        "rouge_1": 1.0,
+        "rouge_2": 1.0,
+        "token_accuracy": 1.0,
+        "correct_tokens": 7.0,
+        "f1_score": 1.0
+      }
+    },
+    "list_metrics": {
+      "1": [
+        {
+          "mean_rouge_l": 1.0,
+          "mean_rouge_1": 1.0,
+          "mean_rouge_2": 1.0,
+          "mean_token_accuracy": 1.0,
+          "mean_correct_tokens": 7.0,
+          "mean_f1_score": 1.0,
+          "sentence_count": 1,
+          "total_correct_tokens": 7,
+          "sentence_details": [
+            {
+              "original": "I'll fix you a drink.",
+              "reconstructed": "I'll fix you a drink.",
+              "rouge_l": 1.0,
+              "rouge_1": 1.0,
+              "rouge_2": 1.0,
+              "token_accuracy": 1.0,
+              "correct_tokens": 7,
+              "f1_score": 1.0,
+              "total_tokens": 7,
+              "recon_token_count": 7
+            }
+          ]
+        },
+        {
+          "mean_rouge_l": 1.0,
+          "mean_rouge_1": 1.0,
+          "mean_rouge_2": 1.0,
+          "mean_token_accuracy": 1.0,
+          "mean_correct_tokens": 6.0,
+          "mean_f1_score": 1.0,
+          "sentence_count": 1,
+          "total_correct_tokens": 6,
+          "sentence_details": [
+            {
+              "original": "Fred watered the plants flat.",
+              "reconstructed": "Fred watered the plants flat.",
+              "rouge_l": 1.0,
+              "rouge_1": 1.0,
+              "rouge_2": 1.0,
+              "token_accuracy": 1.0,
+              "correct_tokens": 6,
+              "f1_score": 1.0,
+              "total_tokens": 6,
+              "recon_token_count": 6
+            }
+          ]
+        },
+        {
+          "mean_rouge_l": 1.0,
+          "mean_rouge_1": 1.0,
+          "mean_rouge_2": 1.0,
+          "mean_token_accuracy": 1.0,
+          "mean_correct_tokens": 9.0,
+          "mean_f1_score": 1.0,
+          "sentence_count": 1,
+          "total_correct_tokens": 9,
+          "sentence_details": [
+            {
+              "original": "Bill coughed his way out of the restaurant.",
+              "reconstructed": "Bill coughed his way out of the restaurant.",
+              "rouge_l": 1.0,
+              "rouge_1": 1.0,
+              "rouge_2": 1.0,
+              "token_accuracy": 1.0,
+              "correct_tokens": 9,
+              "f1_score": 1.0,
+              "total_tokens": 9,
+              "recon_token_count": 9
+            }
+          ]
+        },
+        {
+          "mean_rouge_l": 1.0,
+          "mean_rouge_1": 1.0,
+          "mean_rouge_2": 1.0,
+          "mean_token_accuracy": 1.0,
+          "mean_correct_tokens": 7.0,
+          "mean_f1_score": 1.0,
+          "sentence_count": 1,
+          "total_correct_tokens": 7,
+          "sentence_details": [
+            {
+              "original": "We're dancing the night away.",
+              "reconstructed": "We're dancing the night away.",
+              "rouge_l": 1.0,
+              "rouge_1": 1.0,
+              "rouge_2": 1.0,
+              "token_accuracy": 1.0,
+              "correct_tokens": 7,
+              "f1_score": 1.0,
+              "total_tokens": 7,
+              "recon_token_count": 7
+            }
+          ]
+        },
+        {
+          "mean_rouge_l": 1.0,
+          "mean_rouge_1": 1.0,
+          "mean_rouge_2": 1.0,
+          "mean_token_accuracy": 1.0,
+          "mean_correct_tokens": 6.0,
+          "mean_f1_score": 1.0,
+          "sentence_count": 1,
+          "total_correct_tokens": 6,
+          "sentence_details": [
+            {
+              "original": "Herman hammered the metal flat.",
+              "reconstructed": "Herman hammered the metal flat.",
+              "rouge_l": 1.0,
+              "rouge_1": 1.0,
+              "rouge_2": 1.0,
+              "token_accuracy": 1.0,
+              "correct_tokens": 6,
+              "f1_score": 1.0,
+              "total_tokens": 6,
+              "recon_token_count": 6
+            }
+          ]
+        }
+      ]
+    },
+    "mean_metrics": {
+      "rouge_l": 1.0,
+      "rouge_1": 1.0,
+      "rouge_2": 1.0,
+      "token_accuracy": 1.0,
+      "correct_tokens": 7.0,
+      "f1_score": 1.0
+    },
+    "details": [
+      {
+        "batch_size": "1",
+        "mean_rouge_l": 1.0,
+        "mean_rouge_1": 1.0,
+        "mean_rouge_2": 1.0,
+        "mean_token_accuracy": 1.0,
+        "mean_correct_tokens": 7.0,
+        "mean_f1_score": 1.0,
+        "list_details": [
+          {
+            "list_index": 0,
+            "rouge_l": 1.0,
+            "rouge_1": 1.0,
+            "rouge_2": 1.0,
+            "token_accuracy": 1.0,
+            "correct_tokens": 7,
+            "f1_score": 1.0,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "I'll fix you a drink.",
+                "reconstructed": "I'll fix you a drink.",
+                "rouge_l": 1.0,
+                "rouge_1": 1.0,
+                "rouge_2": 1.0,
+                "token_accuracy": 1.0,
+                "correct_tokens": 7,
+                "f1_score": 1.0,
+                "total_tokens": 7,
+                "recon_token_count": 7
+              }
+            ]
+          },
+          {
+            "list_index": 1,
+            "rouge_l": 1.0,
+            "rouge_1": 1.0,
+            "rouge_2": 1.0,
+            "token_accuracy": 1.0,
+            "correct_tokens": 6,
+            "f1_score": 1.0,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "Fred watered the plants flat.",
+                "reconstructed": "Fred watered the plants flat.",
+                "rouge_l": 1.0,
+                "rouge_1": 1.0,
+                "rouge_2": 1.0,
+                "token_accuracy": 1.0,
+                "correct_tokens": 6,
+                "f1_score": 1.0,
+                "total_tokens": 6,
+                "recon_token_count": 6
+              }
+            ]
+          },
+          {
+            "list_index": 2,
+            "rouge_l": 1.0,
+            "rouge_1": 1.0,
+            "rouge_2": 1.0,
+            "token_accuracy": 1.0,
+            "correct_tokens": 9,
+            "f1_score": 1.0,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "Bill coughed his way out of the restaurant.",
+                "reconstructed": "Bill coughed his way out of the restaurant.",
+                "rouge_l": 1.0,
+                "rouge_1": 1.0,
+                "rouge_2": 1.0,
+                "token_accuracy": 1.0,
+                "correct_tokens": 9,
+                "f1_score": 1.0,
+                "total_tokens": 9,
+                "recon_token_count": 9
+              }
+            ]
+          },
+          {
+            "list_index": 3,
+            "rouge_l": 1.0,
+            "rouge_1": 1.0,
+            "rouge_2": 1.0,
+            "token_accuracy": 1.0,
+            "correct_tokens": 7,
+            "f1_score": 1.0,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "We're dancing the night away.",
+                "reconstructed": "We're dancing the night away.",
+                "rouge_l": 1.0,
+                "rouge_1": 1.0,
+                "rouge_2": 1.0,
+                "token_accuracy": 1.0,
+                "correct_tokens": 7,
+                "f1_score": 1.0,
+                "total_tokens": 7,
+                "recon_token_count": 7
+              }
+            ]
+          },
+          {
+            "list_index": 4,
+            "rouge_l": 1.0,
+            "rouge_1": 1.0,
+            "rouge_2": 1.0,
+            "token_accuracy": 1.0,
+            "correct_tokens": 6,
+            "f1_score": 1.0,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "Herman hammered the metal flat.",
+                "reconstructed": "Herman hammered the metal flat.",
+                "rouge_l": 1.0,
+                "rouge_1": 1.0,
+                "rouge_2": 1.0,
+                "token_accuracy": 1.0,
+                "correct_tokens": 6,
+                "f1_score": 1.0,
+                "total_tokens": 6,
+                "recon_token_count": 6
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "Opt-GP-0.5": {
+    "batch_metrics": {
+      "1": {
+        "rouge_l": 1.0,
+        "rouge_1": 1.0,
+        "rouge_2": 1.0,
+        "token_accuracy": 1.0,
+        "correct_tokens": 7.0,
+        "f1_score": 1.0
+      }
+    },
+    "list_metrics": {
+      "1": [
+        {
+          "mean_rouge_l": 1.0,
+          "mean_rouge_1": 1.0,
+          "mean_rouge_2": 1.0,
+          "mean_token_accuracy": 1.0,
+          "mean_correct_tokens": 7.0,
+          "mean_f1_score": 1.0,
+          "sentence_count": 1,
+          "total_correct_tokens": 7,
+          "sentence_details": [
+            {
+              "original": "I'll fix you a drink.",
+              "reconstructed": "I'll fix you a drink.",
+              "rouge_l": 1.0,
+              "rouge_1": 1.0,
+              "rouge_2": 1.0,
+              "token_accuracy": 1.0,
+              "correct_tokens": 7,
+              "f1_score": 1.0,
+              "total_tokens": 7,
+              "recon_token_count": 7
+            }
+          ]
+        },
+        {
+          "mean_rouge_l": 1.0,
+          "mean_rouge_1": 1.0,
+          "mean_rouge_2": 1.0,
+          "mean_token_accuracy": 1.0,
+          "mean_correct_tokens": 6.0,
+          "mean_f1_score": 1.0,
+          "sentence_count": 1,
+          "total_correct_tokens": 6,
+          "sentence_details": [
+            {
+              "original": "Fred watered the plants flat.",
+              "reconstructed": "Fred watered the plants flat.",
+              "rouge_l": 1.0,
+              "rouge_1": 1.0,
+              "rouge_2": 1.0,
+              "token_accuracy": 1.0,
+              "correct_tokens": 6,
+              "f1_score": 1.0,
+              "total_tokens": 6,
+              "recon_token_count": 6
+            }
+          ]
+        },
+        {
+          "mean_rouge_l": 1.0,
+          "mean_rouge_1": 1.0,
+          "mean_rouge_2": 1.0,
+          "mean_token_accuracy": 1.0,
+          "mean_correct_tokens": 9.0,
+          "mean_f1_score": 1.0,
+          "sentence_count": 1,
+          "total_correct_tokens": 9,
+          "sentence_details": [
+            {
+              "original": "Bill coughed his way out of the restaurant.",
+              "reconstructed": "Bill coughed his way out of the restaurant.",
+              "rouge_l": 1.0,
+              "rouge_1": 1.0,
+              "rouge_2": 1.0,
+              "token_accuracy": 1.0,
+              "correct_tokens": 9,
+              "f1_score": 1.0,
+              "total_tokens": 9,
+              "recon_token_count": 9
+            }
+          ]
+        },
+        {
+          "mean_rouge_l": 1.0,
+          "mean_rouge_1": 1.0,
+          "mean_rouge_2": 1.0,
+          "mean_token_accuracy": 1.0,
+          "mean_correct_tokens": 7.0,
+          "mean_f1_score": 1.0,
+          "sentence_count": 1,
+          "total_correct_tokens": 7,
+          "sentence_details": [
+            {
+              "original": "We're dancing the night away.",
+              "reconstructed": "We're dancing the night away.",
+              "rouge_l": 1.0,
+              "rouge_1": 1.0,
+              "rouge_2": 1.0,
+              "token_accuracy": 1.0,
+              "correct_tokens": 7,
+              "f1_score": 1.0,
+              "total_tokens": 7,
+              "recon_token_count": 7
+            }
+          ]
+        },
+        {
+          "mean_rouge_l": 1.0,
+          "mean_rouge_1": 1.0,
+          "mean_rouge_2": 1.0,
+          "mean_token_accuracy": 1.0,
+          "mean_correct_tokens": 6.0,
+          "mean_f1_score": 1.0,
+          "sentence_count": 1,
+          "total_correct_tokens": 6,
+          "sentence_details": [
+            {
+              "original": "Herman hammered the metal flat.",
+              "reconstructed": "Herman hammered the metal flat.",
+              "rouge_l": 1.0,
+              "rouge_1": 1.0,
+              "rouge_2": 1.0,
+              "token_accuracy": 1.0,
+              "correct_tokens": 6,
+              "f1_score": 1.0,
+              "total_tokens": 6,
+              "recon_token_count": 6
+            }
+          ]
+        }
+      ]
+    },
+    "mean_metrics": {
+      "rouge_l": 1.0,
+      "rouge_1": 1.0,
+      "rouge_2": 1.0,
+      "token_accuracy": 1.0,
+      "correct_tokens": 7.0,
+      "f1_score": 1.0
+    },
+    "details": [
+      {
+        "batch_size": "1",
+        "mean_rouge_l": 1.0,
+        "mean_rouge_1": 1.0,
+        "mean_rouge_2": 1.0,
+        "mean_token_accuracy": 1.0,
+        "mean_correct_tokens": 7.0,
+        "mean_f1_score": 1.0,
+        "list_details": [
+          {
+            "list_index": 0,
+            "rouge_l": 1.0,
+            "rouge_1": 1.0,
+            "rouge_2": 1.0,
+            "token_accuracy": 1.0,
+            "correct_tokens": 7,
+            "f1_score": 1.0,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "I'll fix you a drink.",
+                "reconstructed": "I'll fix you a drink.",
+                "rouge_l": 1.0,
+                "rouge_1": 1.0,
+                "rouge_2": 1.0,
+                "token_accuracy": 1.0,
+                "correct_tokens": 7,
+                "f1_score": 1.0,
+                "total_tokens": 7,
+                "recon_token_count": 7
+              }
+            ]
+          },
+          {
+            "list_index": 1,
+            "rouge_l": 1.0,
+            "rouge_1": 1.0,
+            "rouge_2": 1.0,
+            "token_accuracy": 1.0,
+            "correct_tokens": 6,
+            "f1_score": 1.0,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "Fred watered the plants flat.",
+                "reconstructed": "Fred watered the plants flat.",
+                "rouge_l": 1.0,
+                "rouge_1": 1.0,
+                "rouge_2": 1.0,
+                "token_accuracy": 1.0,
+                "correct_tokens": 6,
+                "f1_score": 1.0,
+                "total_tokens": 6,
+                "recon_token_count": 6
+              }
+            ]
+          },
+          {
+            "list_index": 2,
+            "rouge_l": 1.0,
+            "rouge_1": 1.0,
+            "rouge_2": 1.0,
+            "token_accuracy": 1.0,
+            "correct_tokens": 9,
+            "f1_score": 1.0,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "Bill coughed his way out of the restaurant.",
+                "reconstructed": "Bill coughed his way out of the restaurant.",
+                "rouge_l": 1.0,
+                "rouge_1": 1.0,
+                "rouge_2": 1.0,
+                "token_accuracy": 1.0,
+                "correct_tokens": 9,
+                "f1_score": 1.0,
+                "total_tokens": 9,
+                "recon_token_count": 9
+              }
+            ]
+          },
+          {
+            "list_index": 3,
+            "rouge_l": 1.0,
+            "rouge_1": 1.0,
+            "rouge_2": 1.0,
+            "token_accuracy": 1.0,
+            "correct_tokens": 7,
+            "f1_score": 1.0,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "We're dancing the night away.",
+                "reconstructed": "We're dancing the night away.",
+                "rouge_l": 1.0,
+                "rouge_1": 1.0,
+                "rouge_2": 1.0,
+                "token_accuracy": 1.0,
+                "correct_tokens": 7,
+                "f1_score": 1.0,
+                "total_tokens": 7,
+                "recon_token_count": 7
+              }
+            ]
+          },
+          {
+            "list_index": 4,
+            "rouge_l": 1.0,
+            "rouge_1": 1.0,
+            "rouge_2": 1.0,
+            "token_accuracy": 1.0,
+            "correct_tokens": 6,
+            "f1_score": 1.0,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "Herman hammered the metal flat.",
+                "reconstructed": "Herman hammered the metal flat.",
+                "rouge_l": 1.0,
+                "rouge_1": 1.0,
+                "rouge_2": 1.0,
+                "token_accuracy": 1.0,
+                "correct_tokens": 6,
+                "f1_score": 1.0,
+                "total_tokens": 6,
+                "recon_token_count": 6
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "Opt-GP-0.7": {
+    "batch_metrics": {
+      "1": {
+        "rouge_l": 0.7,
+        "rouge_1": 0.7,
+        "rouge_2": 0.6799999999999999,
+        "token_accuracy": 0.7,
+        "correct_tokens": 4.6,
+        "f1_score": 0.7333333333333333
+      }
+    },
+    "list_metrics": {
+      "1": [
+        {
+          "mean_rouge_l": 1.0,
+          "mean_rouge_1": 1.0,
+          "mean_rouge_2": 1.0,
+          "mean_token_accuracy": 1.0,
+          "mean_correct_tokens": 7.0,
+          "mean_f1_score": 1.0,
+          "sentence_count": 1,
+          "total_correct_tokens": 7,
+          "sentence_details": [
+            {
+              "original": "I'll fix you a drink.",
+              "reconstructed": "I'll fix you a drink.",
+              "rouge_l": 1.0,
+              "rouge_1": 1.0,
+              "rouge_2": 1.0,
+              "token_accuracy": 1.0,
+              "correct_tokens": 7,
+              "f1_score": 1.0,
+              "total_tokens": 7,
+              "recon_token_count": 7
+            }
+          ]
+        },
+        {
+          "mean_rouge_l": 1.0,
+          "mean_rouge_1": 1.0,
+          "mean_rouge_2": 1.0,
+          "mean_token_accuracy": 1.0,
+          "mean_correct_tokens": 6.0,
+          "mean_f1_score": 1.0,
+          "sentence_count": 1,
+          "total_correct_tokens": 6,
+          "sentence_details": [
+            {
+              "original": "Fred watered the plants flat.",
+              "reconstructed": "Fred watered the plants flat.",
+              "rouge_l": 1.0,
+              "rouge_1": 1.0,
+              "rouge_2": 1.0,
+              "token_accuracy": 1.0,
+              "correct_tokens": 6,
+              "f1_score": 1.0,
+              "total_tokens": 6,
+              "recon_token_count": 6
+            }
+          ]
+        },
+        {
+          "mean_rouge_l": 0.0,
+          "mean_rouge_1": 0.0,
+          "mean_rouge_2": 0.0,
+          "mean_token_accuracy": 0.0,
+          "mean_correct_tokens": 0.0,
+          "mean_f1_score": 0.0,
+          "sentence_count": 1,
+          "total_correct_tokens": 0,
+          "sentence_details": [
+            {
+              "original": "Bill coughed his way out of the restaurant.",
+              "reconstructed": "",
+              "rouge_l": 0.0,
+              "rouge_1": 0.0,
+              "rouge_2": 0.0,
+              "token_accuracy": 0.0,
+              "correct_tokens": 0,
+              "f1_score": 0.0,
+              "total_tokens": 9,
+              "recon_token_count": 0
+            }
+          ]
+        },
+        {
+          "mean_rouge_l": 1.0,
+          "mean_rouge_1": 1.0,
+          "mean_rouge_2": 1.0,
+          "mean_token_accuracy": 1.0,
+          "mean_correct_tokens": 7.0,
+          "mean_f1_score": 1.0,
+          "sentence_count": 1,
+          "total_correct_tokens": 7,
+          "sentence_details": [
+            {
+              "original": "We're dancing the night away.",
+              "reconstructed": "We're dancing the night away.",
+              "rouge_l": 1.0,
+              "rouge_1": 1.0,
+              "rouge_2": 1.0,
+              "token_accuracy": 1.0,
+              "correct_tokens": 7,
+              "f1_score": 1.0,
+              "total_tokens": 7,
+              "recon_token_count": 7
+            }
+          ]
+        },
+        {
+          "mean_rouge_l": 0.5,
+          "mean_rouge_1": 0.5,
+          "mean_rouge_2": 0.4,
+          "mean_token_accuracy": 0.5,
+          "mean_correct_tokens": 3.0,
+          "mean_f1_score": 0.6666666666666666,
+          "sentence_count": 1,
+          "total_correct_tokens": 3,
+          "sentence_details": [
+            {
+              "original": "Herman hammered the metal flat.",
+              "reconstructed": "Herman hammered the",
+              "rouge_l": 0.5,
+              "rouge_1": 0.5,
+              "rouge_2": 0.4,
+              "token_accuracy": 0.5,
+              "correct_tokens": 3,
+              "f1_score": 0.6666666666666666,
+              "total_tokens": 6,
+              "recon_token_count": 3
+            }
+          ]
+        }
+      ]
+    },
+    "mean_metrics": {
+      "rouge_l": 0.7,
+      "rouge_1": 0.7,
+      "rouge_2": 0.6799999999999999,
+      "token_accuracy": 0.7,
+      "correct_tokens": 4.6,
+      "f1_score": 0.7333333333333333
+    },
+    "details": [
+      {
+        "batch_size": "1",
+        "mean_rouge_l": 0.7,
+        "mean_rouge_1": 0.7,
+        "mean_rouge_2": 0.6799999999999999,
+        "mean_token_accuracy": 0.7,
+        "mean_correct_tokens": 4.6,
+        "mean_f1_score": 0.7333333333333333,
+        "list_details": [
+          {
+            "list_index": 0,
+            "rouge_l": 1.0,
+            "rouge_1": 1.0,
+            "rouge_2": 1.0,
+            "token_accuracy": 1.0,
+            "correct_tokens": 7,
+            "f1_score": 1.0,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "I'll fix you a drink.",
+                "reconstructed": "I'll fix you a drink.",
+                "rouge_l": 1.0,
+                "rouge_1": 1.0,
+                "rouge_2": 1.0,
+                "token_accuracy": 1.0,
+                "correct_tokens": 7,
+                "f1_score": 1.0,
+                "total_tokens": 7,
+                "recon_token_count": 7
+              }
+            ]
+          },
+          {
+            "list_index": 1,
+            "rouge_l": 1.0,
+            "rouge_1": 1.0,
+            "rouge_2": 1.0,
+            "token_accuracy": 1.0,
+            "correct_tokens": 6,
+            "f1_score": 1.0,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "Fred watered the plants flat.",
+                "reconstructed": "Fred watered the plants flat.",
+                "rouge_l": 1.0,
+                "rouge_1": 1.0,
+                "rouge_2": 1.0,
+                "token_accuracy": 1.0,
+                "correct_tokens": 6,
+                "f1_score": 1.0,
+                "total_tokens": 6,
+                "recon_token_count": 6
+              }
+            ]
+          },
+          {
+            "list_index": 2,
+            "rouge_l": 0.0,
+            "rouge_1": 0.0,
+            "rouge_2": 0.0,
+            "token_accuracy": 0.0,
+            "correct_tokens": 0,
+            "f1_score": 0.0,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "Bill coughed his way out of the restaurant.",
+                "reconstructed": "",
+                "rouge_l": 0.0,
+                "rouge_1": 0.0,
+                "rouge_2": 0.0,
+                "token_accuracy": 0.0,
+                "correct_tokens": 0,
+                "f1_score": 0.0,
+                "total_tokens": 9,
+                "recon_token_count": 0
+              }
+            ]
+          },
+          {
+            "list_index": 3,
+            "rouge_l": 1.0,
+            "rouge_1": 1.0,
+            "rouge_2": 1.0,
+            "token_accuracy": 1.0,
+            "correct_tokens": 7,
+            "f1_score": 1.0,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "We're dancing the night away.",
+                "reconstructed": "We're dancing the night away.",
+                "rouge_l": 1.0,
+                "rouge_1": 1.0,
+                "rouge_2": 1.0,
+                "token_accuracy": 1.0,
+                "correct_tokens": 7,
+                "f1_score": 1.0,
+                "total_tokens": 7,
+                "recon_token_count": 7
+              }
+            ]
+          },
+          {
+            "list_index": 4,
+            "rouge_l": 0.5,
+            "rouge_1": 0.5,
+            "rouge_2": 0.4,
+            "token_accuracy": 0.5,
+            "correct_tokens": 3,
+            "f1_score": 0.6666666666666666,
+            "sentence_count": 1,
+            "sentence_details": [
+              {
+                "original": "Herman hammered the metal flat.",
+                "reconstructed": "Herman hammered the",
+                "rouge_l": 0.5,
+                "rouge_1": 0.5,
+                "rouge_2": 0.4,
+                "token_accuracy": 0.5,
+                "correct_tokens": 3,
+                "f1_score": 0.6666666666666666,
+                "total_tokens": 6,
+                "recon_token_count": 3
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
